@@ -63,10 +63,10 @@ export const weatherOptions = [
 
 export const defaultWeatherOptions = {
   day: {
-    url: new URL("../assets/day/clear.svg", import.meta.url),
+    url: new URL("../assets/day/day.svg", import.meta.url),
   },
   night: {
-    url: new URL("../assets/night/clear.svg", import.meta.url),
+    url: new URL("../assets/night/night.svg", import.meta.url),
   }
 }
 
