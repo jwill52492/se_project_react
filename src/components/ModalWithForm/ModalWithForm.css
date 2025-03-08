@@ -61,5 +61,14 @@
   gap: 8px;
   padding: 8px 16px;
   width: 120px;
+  color:#ffffff;
+  background-color: #000000;
+}
 
+.modal__submit:hover {
+  background-color: #00000099;
+}
+
+.modal__submit:disabled {
+  background-color: #0000004D;
 }
