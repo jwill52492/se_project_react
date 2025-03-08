@@ -56,6 +56,14 @@
   border: none;
 }
 
+.modal__radio-input {
+  color: #00000080;
+}
+
+.modal__radio-input:checked + .modal__label_type_radio {
+  opacity: 100%;
+}
+
 .modal__submit {
   border-radius: 4px;
   gap: 8px;
