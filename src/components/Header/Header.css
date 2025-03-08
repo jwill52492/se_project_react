@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 32px 0 28px;
+}
+
+.header__logo {
+  margin-right: 24px;
+}
+
+.header__date-and-location {
+  margin-right: auto;
+}
+
+.header__user-container {
+  display: flex;
+  align-items: center;
+}
+
+.header__add-clothes-button {
+  margin-left: auto;
+}
+
+.header__username {
+  margin: 0 12px 0;
+}
+
