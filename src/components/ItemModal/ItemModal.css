@@ -1,0 +1,24 @@
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 498px;
+  max-height: 610px;
+  padding: 0;
+}
+
+.modal__content_type_image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
