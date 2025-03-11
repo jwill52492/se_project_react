@@ -17,6 +17,9 @@
   line-height: 1.2;
   color: #000000;
   margin-top: 16px;
+  width: 100%;
+  padding-left:32px;
+  margin: 0;
 }
 
 .modal__image {
@@ -25,4 +28,14 @@
   object-fit: contain;
   overflow: hidden;
   padding: 0;
+}
+
+.modal__caption {
+  padding-bottom: 12px;
+  margin: 0;
+}
+
+.modal__weather {
+  margin: 0;
+  padding-bottom: 32px;
 }
