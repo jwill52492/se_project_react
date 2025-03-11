@@ -11,7 +11,7 @@ import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 
 function App() {
   const [weatherData, setWeatherData] = useState({ type:"", temperature: { F: 999 } });
-  const [activeModal, setActiveModal] = useState("preview");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
 
   const handleCardClick = (card) => {

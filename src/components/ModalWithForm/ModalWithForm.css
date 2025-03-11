@@ -50,6 +50,12 @@
   border-bottom: 1px solid #000000;
 }
 
+.modal__legend {
+  color: #000000;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
 .modal__radio-buttons {
   display: flex;
   flex-direction: column;
@@ -57,7 +63,9 @@
 }
 
 .modal__radio-input {
+  flex-direction: row;
   color: #00000080;
+  gap: 8px;
 }
 
 .modal__radio-input:checked + .modal__label_type_radio {
