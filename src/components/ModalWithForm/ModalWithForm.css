@@ -17,6 +17,8 @@
 
 .modal__title {
   margin: 0;
+  padding: 0 0 24px 0;
+
 }
 
 .modal__content {
@@ -27,6 +29,7 @@
   max-width: 496px;
   box-sizing: border-box;
   border-radius: 20px;
+  padding: 28px 28px 36px;
 }
 
 .modal__close {
@@ -40,13 +43,13 @@
 .modal__form {
   display: flex;
   flex-direction: column;
-  padding-top: 24px;
 }
 
 .modal__input {
   display: block;
   width: 100%;
   border: none;
+  padding-top: 8px;
   border-bottom: 1px solid #000000;
 }
 
@@ -54,27 +57,43 @@
   color: #000000;
   font-size: 16px;
   line-height: 1.25;
+  padding: 24px 0 12px 0;
+}
+
+.modal__label {
+  padding: 0 0 24px 0;
+  gap: 8px;
 }
 
 .modal__radio-buttons {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 36px 0;
   border: none;
-  color: #00000080;
+  color: #00000080;;
 }
 
 .modal__radio-input {
-  flex-direction: row;
-  gap: 8px;
+  align-items: center;
+  border: none;
 }
 
-.modal__radio-input:checked + .modal__label_type_radio {
-  color:#000000;
+.modal__label_type_radio {
+  padding: 0;
+}
+
+
+input[type="radio"]{
+  accent-color: #000000;
 }
 
 .modal__submit:disabled {
   background-color: #0000004D;
 }
+
 
 .modal__submit {
   border-radius: 4px;
