@@ -3,12 +3,13 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 
-function Main({ weatherData, handleCardClick }) {
+function Main({ weatherData, handleCardClick, currentTemperatureUnit }) {
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
       <section className="cards">
-        <p className="cards__text">Today is {weatherData?.temp?.F} &deg: F / You may want to wear:</p>
+        <p className="cards__text">Today is {currentTemperatureUnit === "F" ? weatherData?.temp?.F : weatherData?.temp?.C}&deg;{currentTemperatureUnit}
+           / You may want to wear:</p>
         <ul className="cards__list">
           {defaultClothingItems.filter((item) => {
             return item.weather === weatherData.type;

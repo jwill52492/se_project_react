@@ -6,7 +6,7 @@
 
 .toggle-switch {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   width: 56px;
   height: 28px;
   gap: 10px;
@@ -15,9 +15,8 @@
   border-radius: 20px;
   overflow: hidden;
   position: relative;
-  right: 20px;
   padding: 0;
-  margin-right: 20px;
+  margin: 0;
 }
 
 .toggle-switch__checkbox {
@@ -34,14 +33,10 @@
   transition: all 0.5s;
 }
 
-.toggle-switch__label {
-  color: #00000080;
+.toggle-switch__text {
+  color: #000000;
   top: 5px;
   left: 10px;
-}
-
-.toggle-switch__slider:hover + .toggle-switch__label {
-  color: #ffffff;
 }
 
 .toggle-switch__text_F {
@@ -52,6 +47,10 @@
 .toggle-switch__text_C {
   position: absolute;
   right: 10px;
+}
+
+.toggle-switch__text_color_white {
+  color: #ffffff;
 }
 
 .toggle-switch__checkbox:checked ~ .toggle-switch__slider {
