@@ -1,0 +1,59 @@
+.toggle-switch__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  width: 56px;
+  height: 28px;
+  gap: 10px;
+  background-color: #FFFFFF;
+  border: 2px solid #7E7E7E;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  right: 20px;
+  padding: 0;
+  margin-right: 20px;
+}
+
+.toggle-switch__checkbox {
+  opacity: 0;
+}
+
+.toggle-switch__slider {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #000000;
+  width: 28px;
+  height: 28px;
+  left: 0;
+  transition: all 0.5s;
+}
+
+.toggle-switch__label {
+  color: #00000080;
+  top: 5px;
+  left: 10px;
+}
+
+.toggle-switch__slider:hover + .toggle-switch__label {
+  color: #ffffff;
+}
+
+.toggle-switch__text_F {
+  position: absolute;
+  left: 10px;
+}
+
+.toggle-switch__text_C {
+  position: absolute;
+  right: 10px;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__slider {
+  left: 28px;
+}
