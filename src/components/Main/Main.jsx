@@ -2,8 +2,9 @@ import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, handleCardClick, currentTemperatureUnit }) {
+function Main({ weatherData, handleCardClick, currentTemperatureUnit, clothingItems }) {
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -11,7 +12,7 @@ function Main({ weatherData, handleCardClick, currentTemperatureUnit }) {
         <p className="cards__text">Today is {currentTemperatureUnit === "F" ? weatherData?.temp?.F : weatherData?.temp?.C}&deg;{currentTemperatureUnit}
            / You may want to wear:</p>
         <ul className="cards__list">
-          {defaultClothingItems.filter((item) => {
+          {clothingItems.filter((item) => {
             return item.weather === weatherData.type;
           })
           .map((item) => {
