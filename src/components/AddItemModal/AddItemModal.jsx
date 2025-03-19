@@ -17,29 +17,33 @@ export default function AddItemModal({ onClose, isOpen, onAddItemModalSubmit }) 
 
   return (
     <ModalWithForm title="New garment" buttonText="Add garment" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
-      <label className="modal__label" htmlFor="name" onChange={(e)=>{setName(e.target.value)}} value={name}>
+      <label className="modal__label" htmlFor="name">
         Name{" "}
-        <input type="text" className="modal__input" id="name" placeholder="Name" required />
+        <input type="text" className="modal__input" id="name" placeholder="Name"
+          onChange={(e)=>{setName(e.target.value)}} value={name} required
+        />
       </label>
-      <label className="modal__label" htmlFor="imageUrl" onChange={(e)=>{setImageUrl(e.target.value)}} value={imageUrl}>
+      <label className="modal__label" htmlFor="imageUrl">
         Image{" "}
-        <input type="text" className="modal__input" id="imageUrl" placeholder="Image URL" required />
+        <input type="text" className="modal__input" id="imageUrl" placeholder="Image URL"
+          onChange={(e)=>{setImageUrl(e.target.value)}} value={imageUrl}required
+        />
       </label>
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type:</legend>
-        <label className="modal__label modal__label_type_radio" onChange={(e)=>{setTemp(e.target.value)}} value="hot"
-          checked={temp === "hot"}>
-          <input type="radio" className="modal__radio-input" id="hot" name="temp" required />
+        <label className="modal__label modal__label_type_radio">
+          <input type="radio" className="modal__radio-input" id="hot" name="temp"
+            onChange={(e)=>{setTemp(e.target.value)}} value="hot" checked={temp === "hot"}required />
             Hot
         </label>
-        <label className="modal__label modal__label_type_radio" onChange={(e)=>{setTemp(e.target.value)}} value="warm"
-          checked={temp === "warm"}>
-          <input type="radio" className="modal__radio-input" id="warm" name="temp" required />
+        <label className="modal__label modal__label_type_radio" >
+          <input type="radio" className="modal__radio-input" id="warm" name="temp"
+            onChange={(e)=>{setTemp(e.target.value)}} value="warm" checked={temp === "warm"} required />
            Warm
         </label>
-        <label className="modal__label modal__label_type_radio" onChange={(e)=>{setTemp(e.target.value)}} value="cold"
-          checked={temp === "cold"}>
-          <input type="radio" className="modal__radio-input" id="cold" name="temp" required />
+        <label className="modal__label modal__label_type_radio">
+          <input type="radio" className="modal__radio-input" id="cold" name="temp"
+            onChange={(e)=>{setTemp(e.target.value)}} value="cold" checked={temp === "cold"} required />
             Cold
         </label>
       </fieldset>

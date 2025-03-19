@@ -25,3 +25,7 @@
   margin: 0 12px 0;
 }
 
+.header__link {
+  text-decoration: none;
+  color: black;
+}
