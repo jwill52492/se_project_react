@@ -1,11 +1,16 @@
 .header {
   display: flex;
+  flex-direction: row;
   align-items: center;
   padding: 32px 0 28px;
 }
 
-.header__logo {
+.header__link {
+  display: flex;
+  flex-direction: row;
   margin-right: 24px;
+  text-decoration: none;
+  color: black;
 }
 
 .header__date-and-location {
@@ -25,7 +30,9 @@
   margin: 0 12px 0;
 }
 
-.header__link {
-  text-decoration: none;
-  color: black;
+.profile__link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
+

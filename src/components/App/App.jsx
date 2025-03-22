@@ -7,13 +7,13 @@ import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 // import ModalWithForm from '../ModalWithForm/ModalWithForm';
+import AddItemModal from '../AddItemModal/AddItemModal';
 import ItemModal from '../ItemModal/ItemModal';
 import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
-import AddItemModal from '../AddItemModal/AddItemModal';
-import { defaultClothingItems } from '../../utils/constants';
-import { getItems } from '../../utils/Api';
+// import { defaultClothingItems } from '../../utils/constants';
+import { getItems } from '../../utils/api';
 
 function App() {
   const [weatherData, setWeatherData] = useState({ type:"", temperature: { F: 999 } });
@@ -39,11 +39,13 @@ const handleToggleSwitchChange = () => {
     setActiveModal("");
   };
 
+
+
   const handleAddItemModalSubmit = ({ name, imageUrl, temp }) => {
     const newId = Math.max(...clothingItems.map((item) => item._id)) + 1;
     setClothingItems((prevItems) => [{ name, link: imageUrl, temp }, ...prevItems]);
     closeActiveModal();
-  }
+  };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -58,16 +60,17 @@ const handleToggleSwitchChange = () => {
     getItems()
       .then((data) => {
         console.log(data);
-        clothingItems = filterGetItems(data);
+        clothingItems = setClothingItems(data);
       })
       .catch(console.error);
   }, []);
+
 
   return (
     <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
       <div className="page">
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} username={"User name"}/>
           <Routes>
             <Route path="/" element = {
               <Main
@@ -76,7 +79,7 @@ const handleToggleSwitchChange = () => {
               currentTemperatureUnit={currentTemperatureUnit}
               clothingItems={clothingItems} />}
             />
-            <Route path="/profile" elements={<Profile onCardClick={handleCardClick} />} />
+            <Route path="/profile" element={<Profile onCardClick={handleCardClick} clothingItems={clothingItems}/>} />
           </Routes>
 
           <Footer />

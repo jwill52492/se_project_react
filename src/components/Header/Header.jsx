@@ -1,4 +1,4 @@
-import { link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
@@ -17,7 +17,7 @@ function Header({ handleAddClick, weatherData }) {
       <ToggleSwitch />
       <button className="header__add-clothes-button" type="button" onClick={handleAddClick}>+ Add Clothes</button>
       <div className="header__user-container">
-        <Link to="/profile">
+        <Link to="/profile" className="profile__link">
           <p className="header__username">Johnnathon Williams</p>
           <img className="header__avatar" src={avatar} alt="John" />
         </Link>
