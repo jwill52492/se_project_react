@@ -60,7 +60,7 @@ const handleToggleSwitchChange = () => {
     getItems()
       .then((data) => {
         console.log(data);
-        clothingItems = setClothingItems(data);
+        setClothingItems(data);
       })
       .catch(console.error);
   }, []);

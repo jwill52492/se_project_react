@@ -1,4 +1,11 @@
 .sidebar {
   display: flex;
   flex-direction: row;
+  max-width: 260px;
+  align-items: center;
 }
+
+.sidebar__username {
+  margin-left: 16px;
+}
+

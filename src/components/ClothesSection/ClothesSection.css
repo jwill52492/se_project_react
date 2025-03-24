@@ -1,0 +1,9 @@
+.clothes-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.clothes-section__text {
+  display: flex;
+  flex-direction: row;
+}
