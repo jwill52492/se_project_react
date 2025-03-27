@@ -43,14 +43,16 @@ const handleToggleSwitchChange = () => {
 
 
   const handleAddItemModalSubmit = ({ name, imageUrl, temp }) => {
-    const newId = Math.max(...clothingItems.map((item) => item._id)) + 1;
-    setClothingItems((prevItems) => [{ name, link: imageUrl, temp }, ...prevItems]);
+    AddItemModal({ name, imageUrl, weather: temp })
+    .then((newItem) => {
+      setClothingItems((prev) => [newItem, ...prevItems]);
+    });
     closeActiveModal();
   };
 
     const handleDeleteClick =(item) => {
       const itemId = item._id
-        .removeItem(item.id)
+        .removeItem(item_.id)
         .then(() => {
           setClothingItems((prevItems) => prevItems.filter(() => item.id !== itemId));
           closeActiveModal();
