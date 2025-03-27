@@ -1,15 +1,17 @@
  .profile {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 0;
+  margin: 0;
 }
 
 .profile_sidebar {
   display: flex;
- margin-right: 116px;
+  margin-right: 116px;
 }
 
 .profile__clothing-items {
-  margin-left: 285px;
-  top: 135px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 80px;
 }

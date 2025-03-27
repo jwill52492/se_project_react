@@ -15,6 +15,7 @@ import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnit
 // import { defaultClothingItems } from '../../utils/constants';
 import { getItems } from '../../utils/api';
 
+
 function App() {
   const [weatherData, setWeatherData] = useState({ type:"", temperature: { F: 999 } });
   const [activeModal, setActiveModal] = useState("");
@@ -46,6 +47,14 @@ const handleToggleSwitchChange = () => {
     setClothingItems((prevItems) => [{ name, link: imageUrl, temp }, ...prevItems]);
     closeActiveModal();
   };
+
+    const handleDeleteCard =(card) => {
+      api
+        .removeItem(card.id)
+        .then(() => {
+          setClothingItems((cards) => cards.filter(() => card.id !== card.id))
+        })
+    }
 
   useEffect(() => {
     getWeather(coordinates, APIkey)

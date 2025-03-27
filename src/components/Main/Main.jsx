@@ -4,7 +4,7 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, handleCardClick, currentTemperatureUnit, clothingItems }) {
+function Main({ weatherData, onCardClick, currentTemperatureUnit, clothingItems }) {
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -16,7 +16,7 @@ function Main({ weatherData, handleCardClick, currentTemperatureUnit, clothingIt
             return item.weather === weatherData.type;
           })
           .map((item) => {
-            return <ItemCard key={item._id} item={item} onCardClick={handleCardClick}/>
+            return <ItemCard key={item._id} item={item} onClick={onCardClick}/>
           })}
         </ul>
       </section>
