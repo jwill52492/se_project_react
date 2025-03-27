@@ -48,12 +48,14 @@ const handleToggleSwitchChange = () => {
     closeActiveModal();
   };
 
-    const handleDeleteCard =(card) => {
-      api
-        .removeItem(card.id)
+    const handleDeleteClick =(item) => {
+      const itemId = item._id
+        .removeItem(item.id)
         .then(() => {
-          setClothingItems((cards) => cards.filter(() => card.id !== card.id))
+          setClothingItems((prevItems) => prevItems.filter(() => item.id !== itemId));
+          closeActiveModal();
         })
+        .catch(console.error);
     }
 
   useEffect(() => {
@@ -94,7 +96,7 @@ const handleToggleSwitchChange = () => {
           <Footer />
         </div>
         <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
-        <ItemModal activeModal={activeModal} card={selectedCard} onClose={closeActiveModal} />
+        <ItemModal activeModal={activeModal} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );

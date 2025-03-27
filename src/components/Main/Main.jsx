@@ -16,7 +16,7 @@ function Main({ weatherData, onCardClick, currentTemperatureUnit, clothingItems 
             return item.weather === weatherData.type;
           })
           .map((item) => {
-            return <ItemCard key={item._id} item={item} onClick={onCardClick}/>
+            return <ItemCard key={item._id} item={item} onCardClick={onCardClick}/>
           })}
         </ul>
       </section>

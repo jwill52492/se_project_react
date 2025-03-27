@@ -18,7 +18,7 @@ function getCards() {
 }
 
 function  deleteCards() {
-  return fetch(`${baseUrl}/items/$`, {
+  return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers,
   }).then((res) => {

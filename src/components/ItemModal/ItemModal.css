@@ -7,6 +7,7 @@
   height: 610px;
   padding: 0;
   border-radius: 16px;
+  object-fit: contain;
   overflow: hidden;
 }
 
@@ -28,6 +29,7 @@
   object-fit: contain;
   overflow: hidden;
   padding: 0;
+  margin: 0;
 }
 
 .modal__caption {
@@ -38,4 +40,10 @@
 .modal__weather {
   margin: 0;
   padding-bottom: 32px;
+}
+
+.item-modal__delete-button {
+  color: #FF4D00;
+  border: none;
+  background-color: transparent;
 }
