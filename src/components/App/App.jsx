@@ -13,7 +13,7 @@ import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
 // import { defaultClothingItems } from '../../utils/constants';
-import { getItems } from '../../utils/api';
+import { addCard, getItems } from '../../utils/api';
 
 
 function App() {
@@ -43,7 +43,7 @@ const handleToggleSwitchChange = () => {
 
 
   const handleAddItemModalSubmit = ({ name, imageUrl, temp }) => {
-    AddItemModal({ name, imageUrl, weather: temp })
+    addCard({ name, imageUrl, weather: temp })
     .then((newItem) => {
       setClothingItems((prevItems) => [newItem, ...prevItems]);
     });

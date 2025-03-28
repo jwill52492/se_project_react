@@ -8,7 +8,7 @@ function getItems() {
   });
 }
 
-function addCard() {
+function addCard(card) {
   return fetch( `${baseUrl}/items`, {
     method: "POST",
     headers,

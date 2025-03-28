@@ -1,9 +1,13 @@
 import "./ItemCard.css";
 
-function ItemCard ({ item, onCardClick }) {
+function ItemCard ({ item, onCardClick, onDeleteClick, card }) {
 
   const handleCardClick = () => {
     onCardClick(item);
+  }
+
+  const handleDeleteClick = () => {
+    onDeleteClick(card);
   }
 
   return (
