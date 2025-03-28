@@ -8,10 +8,11 @@ function getItems() {
   });
 }
 
-function getCards() {
+function addCard() {
   return fetch( `${baseUrl}/items`, {
     method: "POST",
     headers,
+    body: JSON.stringify(card)
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
   });
@@ -26,4 +27,4 @@ function  deleteCards() {
   });
 }
 
-export { getItems, getCards, deleteCards };
+export { getItems, addCard, deleteCards };

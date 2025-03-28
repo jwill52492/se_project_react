@@ -45,7 +45,7 @@ const handleToggleSwitchChange = () => {
   const handleAddItemModalSubmit = ({ name, imageUrl, temp }) => {
     AddItemModal({ name, imageUrl, weather: temp })
     .then((newItem) => {
-      setClothingItems((prev) => [newItem, ...prevItems]);
+      setClothingItems((prevItems) => [newItem, ...prevItems]);
     });
     closeActiveModal();
   };
