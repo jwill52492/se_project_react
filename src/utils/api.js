@@ -18,13 +18,14 @@ function addCard(card) {
   });
 }
 
-function  deleteCards() {
+function  deleteCard(card) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers,
+    body: JSON.stringify(card)
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
   });
 }
 
-export { getItems, addCard, deleteCards };
+export { getItems, addCard, deleteCard };

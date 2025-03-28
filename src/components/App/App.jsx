@@ -32,6 +32,10 @@ const handleToggleSwitchChange = () => {
     setSelectedCard(card);
   }
 
+  // const handleDeleteClick = (card) => {
+  //   removeSelectedCard(card);
+  // }
+
   const handleAddClick = () => {
     setActiveModal('add-garment');
   };
@@ -50,7 +54,7 @@ const handleToggleSwitchChange = () => {
     closeActiveModal();
   };
 
-    const handleDeleteClick =(item) => {
+    const handleDeleteClick =(card) => {
       const itemId = item._id
         .removeItem(item_.id)
         .then(() => {

@@ -1,14 +1,11 @@
 import "./ItemCard.css";
 
-function ItemCard ({ item, onCardClick, onDeleteClick, card }) {
+function ItemCard ({ item, onCardClick }) {
 
   const handleCardClick = () => {
     onCardClick(item);
   }
 
-  const handleDeleteClick = () => {
-    onDeleteClick(card);
-  }
 
   return (
     <li className="card">
