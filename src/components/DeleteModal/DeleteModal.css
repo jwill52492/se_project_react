@@ -12,10 +12,6 @@
   visibility: visible;
 }
 
-.modal__close {
-  position: relative;
-}
-
 .delete__text {
   color: #000000;
   max-width: 367px;

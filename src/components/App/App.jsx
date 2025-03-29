@@ -15,7 +15,6 @@ import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
 // import { defaultClothingItems } from '../../utils/constants';
 import { addCard, getItems } from '../../utils/api';
-import DeleteModal from '../DeleteModal/DeleteModal';
 
 
 function App() {
