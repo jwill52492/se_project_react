@@ -18,7 +18,7 @@ function addCard(card) {
   });
 }
 
-function  deleteCard(card) {
+function  deleteCard(itemId) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers,

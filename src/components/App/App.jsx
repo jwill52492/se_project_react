@@ -9,11 +9,13 @@ import Footer from '../Footer/Footer';
 // import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import AddItemModal from '../AddItemModal/AddItemModal';
 import ItemModal from '../ItemModal/ItemModal';
+import DeleteModal from '../DeleteModal/DeleteModal';
 import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
 // import { defaultClothingItems } from '../../utils/constants';
 import { addCard, getItems } from '../../utils/api';
+import DeleteModal from '../DeleteModal/DeleteModal';
 
 
 function App() {
@@ -32,9 +34,10 @@ const handleToggleSwitchChange = () => {
     setSelectedCard(card);
   }
 
-  // const handleDeleteClick = (card) => {
-  //   removeSelectedCard(card);
-  // }
+  const handleDeleteClick = (card) => {
+     setActiveModal('delete');
+     setSelectedCard(card);
+   }
 
   const handleAddClick = () => {
     setActiveModal('add-garment');
@@ -54,15 +57,15 @@ const handleToggleSwitchChange = () => {
     closeActiveModal();
   };
 
-    const handleDeleteClick =(card) => {
-      const itemId = item._id
-        .removeItem(item_.id)
-        .then(() => {
-          setClothingItems((prevItems) => prevItems.filter(() => item.id !== itemId));
-          closeActiveModal();
-        })
-        .catch(console.error);
-    }
+  const handleCardDelete = (card) => {
+    const itemId = card._id;
+    removeItem(itemId)
+    .then(() => {
+      setClothingItems((prevItems) => prevItems.filter(() => item.id !== itemId));
+      closeActiveModal();
+    })
+    .catch(console.error);
+  };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -94,15 +97,23 @@ const handleToggleSwitchChange = () => {
               weatherData={weatherData}
               onCardClick={handleCardClick}
               currentTemperatureUnit={currentTemperatureUnit}
-              clothingItems={clothingItems} />}
+              clothingItems={clothingItems}
+              onDeleteClick={handleDeleteClick} />}
             />
-            <Route path="/profile" element={<Profile onCardClick={handleCardClick} clothingItems={clothingItems}/>} />
+            <Route path="/profile" element={
+              <Profile
+              onCardClick={handleCardClick}
+              clothingItems={clothingItems}
+              onDeleteClick={handleDeleteClick}
+              handleAddClick={handleAddClick} />}
+              />
           </Routes>
 
           <Footer />
         </div>
         <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
         <ItemModal activeModal={activeModal} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
+        <DeleteModal isOpen={activeModal === "delete"}/>
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );
