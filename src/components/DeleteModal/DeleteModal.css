@@ -10,9 +10,6 @@
   width: 670px;
 }
 
-.modal_opened {
-  visibility: visible;
-}
 
 .delete__text {
   color: #000000;
