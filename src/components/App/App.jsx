@@ -112,7 +112,7 @@ const handleToggleSwitchChange = () => {
         </div>
         <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
         <ItemModal activeModal={activeModal} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
-        <DeleteModal isOpen={activeModal === "delete"} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
+        <DeleteModal activeModal={activeModal} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );
