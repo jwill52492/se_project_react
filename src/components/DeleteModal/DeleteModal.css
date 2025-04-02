@@ -2,29 +2,39 @@
   position: absolute;
   background-color: #FFFFFF;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
   height: 280px;
   width: 670px;
+  border-radius: 8px;
 }
 
 
 .delete__text {
   color: #000000;
-  max-width: 367px;
+  max-width: 80%;
+  text-align: center;
   padding-bottom: 20px;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
 .delete__confirm {
   color: #FF4D00;
   padding-bottom: 24px;
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
 .delete__cancel {
   color: #000000;
-  padding-bottom: 60px;
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
 
