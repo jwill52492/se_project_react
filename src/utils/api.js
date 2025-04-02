@@ -21,8 +21,7 @@ function addCard(card) {
 function  deleteCard(itemId) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
-    headers,
-    body: JSON.stringify(card)
+    headers
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
   });

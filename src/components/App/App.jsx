@@ -14,7 +14,7 @@ import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
 // import { defaultClothingItems } from '../../utils/constants';
-import { addCard, getItems } from '../../utils/api';
+import { addCard, deleteCard, getItems } from '../../utils/api';
 
 
 function App() {
@@ -57,10 +57,10 @@ const handleToggleSwitchChange = () => {
   };
 
   const handleDeleteModalSubmit = () => {
-    const itemId = card._id;
-    removeItem(itemId)
+    const itemId = selectedCard._id;
+    deleteCard(itemId)
     .then(() => {
-      setClothingItems((prevItems) => prevItems.filter(() => item.id !== itemId));
+      setClothingItems((prevItems) => prevItems.filter(() => itemId !== itemId));
       closeActiveModal();
     })
     .catch(console.error);
