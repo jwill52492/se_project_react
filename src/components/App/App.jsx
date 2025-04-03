@@ -56,9 +56,10 @@ const handleToggleSwitchChange = () => {
     closeActiveModal();
   };
 
-  const handleDeleteModalSubmit = () => {
-    const itemId = selectedCard._id;
-    deleteCard(selectedCard.id)
+  const handleDeleteModalSubmit = (card) => {
+    const itemId = card;
+    console.log(card);
+    deleteCard(itemId)
     .then(() => {
       setClothingItems((prevItems) => prevItems.filter(() => itemId !== itemId));
       closeActiveModal();
@@ -112,7 +113,7 @@ const handleToggleSwitchChange = () => {
         </div>
         <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
         <ItemModal isOpen={activeModal === 'preview'} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
-        <DeleteModal isOpen={activeModal === 'delete'} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
+        <DeleteModal isOpen={activeModal === 'delete'} card={selectedCard} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );
