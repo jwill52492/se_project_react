@@ -4,7 +4,7 @@ import "./DeleteModal.css";
 function DeleteModal ({ isOpen, onClose, itemId, onDeleteModalSubmit }) {
   function handleDeleteModalSubmit() {
     onDeleteModalSubmit(itemId);
-    removeItem(itemId);
+    deleteCard(itemId);
   }
 
   return (

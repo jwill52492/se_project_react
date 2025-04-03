@@ -58,7 +58,7 @@ const handleToggleSwitchChange = () => {
 
   const handleDeleteModalSubmit = () => {
     const itemId = selectedCard._id;
-    deleteCard(itemId)
+    deleteCard(selectedCard.id)
     .then(() => {
       setClothingItems((prevItems) => prevItems.filter(() => itemId !== itemId));
       closeActiveModal();
