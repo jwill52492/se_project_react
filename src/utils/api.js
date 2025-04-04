@@ -1,11 +1,16 @@
 const baseUrl = 'http://localhost:3001';
 const headers = { "Content-Type": "application/json" };
 
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error ${res.status}`);
+}
+
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  });
+  return fetch(`${baseUrl}/items`).then(checkResponse)
 }
 
 function addCard(card) {
@@ -13,18 +18,14 @@ function addCard(card) {
     method: "POST",
     headers,
     body: JSON.stringify(card)
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  });
+  }).then(checkResponse)
 }
 
 function  deleteCard(itemId) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  });
+  }).then(checkResponse)
 }
 
-export { getItems, addCard, deleteCard };
+export { getItems, addCard, deleteCard, checkResponse };

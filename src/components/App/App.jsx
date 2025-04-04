@@ -52,15 +52,16 @@ const handleToggleSwitchChange = () => {
     addCard({ name, imageUrl, weather: temp })
     .then((newItem) => {
       setClothingItems((prevItems) => [newItem, ...prevItems]);
-    });
-    closeActiveModal();
+      closeActiveModal();
+    })
+    .catch(console.error);
   };
 
   const handleDeleteModalSubmit = () => {
     const itemId = selectedCard._id;
     deleteCard(itemId)
     .then(() => {
-      setClothingItems((prevItems) => prevItems.filter(() => itemId !== itemId));
+      setClothingItems((prevItems) => prevItems.filter((item) => item._id !== itemId));
       closeActiveModal();
     })
     .catch(console.error);
@@ -95,7 +96,6 @@ const handleToggleSwitchChange = () => {
               <Main
               weatherData={weatherData}
               onCardClick={handleCardClick}
-              currentTemperatureUnit={currentTemperatureUnit}
               clothingItems={clothingItems}
               onDeleteClick={handleDeleteClick} />}
             />

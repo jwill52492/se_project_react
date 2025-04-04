@@ -11,11 +11,11 @@ function ClothesSection ({ onCardClick, clothingItems, handleAddClick }) {
       </div>
       <ul className="clothes-section__items">
           {clothingItems.map((item) => {
-            return <ItemCard
+            return (<ItemCard
               key={item._id}
               item={item}
               onCardClick={onCardClick}
-            />
+            />);
           })}
         </ul>
     </div>
