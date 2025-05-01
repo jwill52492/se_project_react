@@ -28,4 +28,12 @@ function  deleteCard(itemId) {
   }).then(checkResponse)
 }
 
-export { getItems, addCard, deleteCard, checkResponse };
+function updateUserInfo(user) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(user)
+  }).then(checkResponse)
+}
+
+export { getItems, addCard, deleteCard, checkResponse, updateUserInfo };

@@ -21,7 +21,7 @@ export default function RegisterModal({ onClose, isOpen, onRegisterModalSubmit }
   };
 
   return (
-    <ModalWithForm title="Register" buttonText="Sign Up" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
+    <ModalWithForm title="Sign Up" buttonText="Sign Up" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <label className="modal__label" htmlFor="Email">
         Email{" "}
         <input type="email" className="modal__input" id="email" placeholder="Email"

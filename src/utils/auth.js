@@ -1,3 +1,5 @@
+import { use, useEffect } from "react";
+
 const baseUrl = "http://localhost:3000";
 
 const signup = (email, password, name, avatarUrl) => {
@@ -29,7 +31,33 @@ const signin = (email, password) => {
     }),
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  }).then((data) => {
+    if (data.token) {
+      localStorage.setItem("jwt", data.token);
+      return data;
+    }
   });
 }
+
+useEffect(() => {
+  const token = localStorage.getItem("jwt");
+  if (token) {
+    fetch(`${BASE_URL}/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(console.error);
+  }
+}
+, [token]);
 
 export { signup, signin };

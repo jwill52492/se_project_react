@@ -1,8 +1,12 @@
-//import { defaultClothingItems } from "../../utils/constants";
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
 function ClothesSection ({ onCardClick, clothingItems, handleAddClick }) {
+  const isOwn = selectedCard.owner === currentUser._id;
+  const itemButtonClassName = (
+    `item-modal__delete-button ${isOwn ? 'item-modal__delete-button_visible' : 'item-modal__delete-button_hidden'}`
+  );
+
   return (
     <div className="clothes-section">
       <div className="clothes-section__text">

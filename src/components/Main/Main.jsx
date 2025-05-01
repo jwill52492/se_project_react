@@ -7,7 +7,7 @@ import { useContext } from "react";
 
 
 
-function Main({ weatherData, onCardClick, clothingItems }) {
+function Main({ weatherData, onCardClick, clothingItems, onCardLike }) {
 
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
@@ -22,7 +22,7 @@ function Main({ weatherData, onCardClick, clothingItems }) {
             return item.weather === weatherData.type;
           })
           .map((item) => {
-            return <ItemCard key={item._id} item={item} onCardClick={onCardClick}/>
+            return <ItemCard key={item._id} item={item} onCardClick={onCardClick} onCardLike={onCardLike}/>
           })}
         </ul>
       </section>
