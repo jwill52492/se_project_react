@@ -15,6 +15,8 @@ import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
 // import { defaultClothingItems } from '../../utils/constants';
 import { addCard, deleteCard, getItems } from '../../utils/api';
+import LoginModal from '../LoginModal/LoginModal';
+import RegisterModal from '../RegisterModal/RegisterModal';
 
 
 function App() {
@@ -67,6 +69,15 @@ const handleToggleSwitchChange = () => {
     .catch(console.error);
   };
 
+  const handleRegisterModalSubmit = ({ email, password, name, avatarUrl }) => {
+    signup(email, password, name, avatarUrl)
+      .then((data) => {
+        console.log(data);
+        closeActiveModal();
+      })
+      .catch(console.error);
+  }
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
     .then((data) => {
@@ -78,7 +89,7 @@ const handleToggleSwitchChange = () => {
 
   useEffect(() => {
     getItems()
-      .then((data) => {
+      .then(( data ) => {
         console.log(data);
         setClothingItems(data);
       })
