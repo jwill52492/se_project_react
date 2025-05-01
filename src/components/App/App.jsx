@@ -13,7 +13,7 @@ import DeleteModal from '../DeleteModal/DeleteModal';
 import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
-// import { defaultClothingItems } from '../../utils/constants';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { addCard, deleteCard, getItems } from '../../utils/api';
 import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
@@ -26,6 +26,8 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -109,6 +111,11 @@ const handleToggleSwitchChange = () => {
     .catch((err) => console.log(err));
   }
 
+  const handleLogin = (userData) => {
+    setCurrentUser(userData);
+    setIsLoggedIn(true);
+  }
+
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
@@ -135,6 +142,7 @@ const handleToggleSwitchChange = () => {
 
 
   return (
+    <CurrentUserContext.Provider value={{ currentUser, isLoggedIn, handleLogout }}>
     <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
       <div className="page">
         <div className="page__content">
@@ -146,7 +154,8 @@ const handleToggleSwitchChange = () => {
               onCardClick={handleCardClick}
               clothingItems={clothingItems}
               onDeleteClick={handleDeleteClick}
-              onCardLike={handleCardLike} />}
+              onCardLike={handleCardLike}
+              onLogin={handleLogin} />}
             />
             <Route path="/profile" element={
               <Profile
@@ -169,6 +178,7 @@ const handleToggleSwitchChange = () => {
         <EditProfileModal isOpen={activeModal === 'change-profile'} onClose={closeActiveModal} onEditProfileSubmit={handleEditProfileSubmit}/>
       </div>
     </CurrentTemperatureUnitContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 
