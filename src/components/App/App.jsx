@@ -143,41 +143,41 @@ const handleToggleSwitchChange = () => {
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, isLoggedIn, handleLogout }}>
-    <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
-      <div className="page">
-        <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} username={"User name"}/>
-          <Routes>
-            <Route path="/" element = {
-              <Main
-              weatherData={weatherData}
-              onCardClick={handleCardClick}
-              clothingItems={clothingItems}
-              onDeleteClick={handleDeleteClick}
-              onCardLike={handleCardLike}
-              onLogin={handleLogin} />}
-            />
-            <Route path="/profile" element={
-              <Profile
-              onCardClick={handleCardClick}
-              clothingItems={clothingItems}
-              onDeleteClick={handleDeleteClick}
-              handleAddClick={handleAddClick}
-              onCardLike={handleCardLike}
-              onSignOut={handleSignOut} />}
+      <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
+        <div className="page">
+          <div className="page__content">
+            <Header handleAddClick={handleAddClick} weatherData={weatherData} username={"User name"}/>
+            <Routes>
+              <Route path="/" element = {
+                <Main
+                weatherData={weatherData}
+                onCardClick={handleCardClick}
+                clothingItems={clothingItems}
+                onDeleteClick={handleDeleteClick}
+                onCardLike={handleCardLike}
+                onLogin={handleLogin} />}
               />
-          </Routes>
+              <Route path="/profile" element={
+                <Profile
+                onCardClick={handleCardClick}
+                clothingItems={clothingItems}
+                onDeleteClick={handleDeleteClick}
+                handleAddClick={handleAddClick}
+                onCardLike={handleCardLike}
+                onSignOut={handleSignOut} />}
+                />
+            </Routes>
 
-          <Footer />
+            <Footer />
+          </div>
+          <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
+          <ItemModal isOpen={activeModal === 'preview'} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
+          <DeleteModal isOpen={activeModal === 'delete'} card={selectedCard} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
+          <LoginModal isOpen={activeModal === 'login'} onClose={closeActiveModal} onLoginModalSubmit={handleLoginModalSubmit} onRegisterClick={() => setActiveModal('register')}/>
+          <RegisterModal isOpen={activeModal === 'sign up'} onClose={closeActiveModal} onRegisterModalSubmit={handleRegisterModalSubmit} onLoginClick={() => setActiveModal('login')}/>
+          <EditProfileModal isOpen={activeModal === 'change-profile'} onClose={closeActiveModal} onEditProfileSubmit={handleEditProfileSubmit}/>
         </div>
-        <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
-        <ItemModal isOpen={activeModal === 'preview'} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
-        <DeleteModal isOpen={activeModal === 'delete'} card={selectedCard} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
-        <LoginModal isOpen={activeModal === 'login'} onClose={closeActiveModal} onLoginModalSubmit={handleLoginModalSubmit} onRegisterClick={() => setActiveModal('register')}/>
-        <RegisterModal isOpen={activeModal === 'sign up'} onClose={closeActiveModal} onRegisterModalSubmit={handleRegisterModalSubmit} onLoginClick={() => setActiveModal('login')}/>
-        <EditProfileModal isOpen={activeModal === 'change-profile'} onClose={closeActiveModal} onEditProfileSubmit={handleEditProfileSubmit}/>
-      </div>
-    </CurrentTemperatureUnitContext.Provider>
+      </CurrentTemperatureUnitContext.Provider>
     </CurrentUserContext.Provider>
   );
 }

@@ -3,6 +3,8 @@ import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import React, {useContext} from 'react';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
@@ -19,7 +21,7 @@ function Header({ handleAddClick, weatherData }) {
       <div className="header__user-container">
         <Link to="/profile" className="profile__link">
           <p className="header__username">Johnnathon Williams</p>
-          <img className="header__avatar" src={avatar} alt="John" />
+          <img className="header__avatar" src={CurrentUserContext.avatar} alt={currentUser.name || 'User'} />
         </Link>
       </div>
     </header>
