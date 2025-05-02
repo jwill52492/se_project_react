@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
 function ClothesSection ({ onCardClick, clothingItems, handleAddClick }) {
-  const isOwn = selectedCard.owner === currentUser._id;
+  const { currentUser } = useContext(CurrentUserContext);
+    if (!currentUser) return null;
+  const isOwn = card.owner === currentUser._id;
   const itemButtonClassName = (
     `item-modal__delete-button ${isOwn ? 'item-modal__delete-button_visible' : 'item-modal__delete-button_hidden'}`
   );

@@ -6,8 +6,10 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import React, {useContext} from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Header({ handleAddClick, weatherData }) {
+function Header({ handleAddClick, weatherData, isloggedIn, handleLoginClick, handleRegisterClick }) {
   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
+  const { currentUser } = useContext(CurrentUserContext);
+    if (!currentUser) return null;
 
   return (
     <header className="header">

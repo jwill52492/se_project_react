@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3001';
+export const baseUrl = 'http://localhost:3001';
 const headers = { "Content-Type": "application/json" };
 
 function checkResponse(res) {
@@ -28,6 +28,26 @@ function  deleteCard(itemId) {
   }).then(checkResponse)
 }
 
+function addCardLike (id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+}
+
+function removeCardLike (id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+}
+
 function updateUserInfo(user) {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
@@ -36,4 +56,4 @@ function updateUserInfo(user) {
   }).then(checkResponse)
 }
 
-export { getItems, addCard, deleteCard, checkResponse, updateUserInfo };
+export { getItems, addCard, deleteCard, checkResponse, addCardLike, removeCardLike, updateUserInfo };

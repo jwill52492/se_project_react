@@ -3,7 +3,7 @@ import "./Profile.css";
 import SideBar from "../SideBar/SideBar";
 
 
-function Profile ({ onCardClick, clothingItems, handleAddClick, handleDeleteClick, handleSignOut }) {
+function Profile ({ onCardClick, clothingItems, handleAddClick, handleDeleteClick, onSignOut }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">

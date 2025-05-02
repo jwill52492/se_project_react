@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import './App.css';
 import { coordinates, APIkey } from '../../utils/constants';
@@ -14,11 +14,11 @@ import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import { addCard, deleteCard, getItems } from '../../utils/api';
+import { addCard, deleteCard, getItems, addCardLike, removeCardLike, updateUserInfo } from '../../utils/api';
 import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import EditProfileModal from '../EditProfileModal/EditProfileModal';
-
+import { signup, signin } from '../../utils/auth';
 
 function App() {
   const [weatherData, setWeatherData] = useState({ type:"", temperature: { F: 999 } });
@@ -29,7 +29,25 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-const handleToggleSwitchChange = () => {
+  const navigate = useNavigate();
+
+  const openAddItemModal = () => {
+    setActiveModal("create");
+  };
+
+  const openRegistrationModal = () => {
+    setActiveModal("register");
+  };
+
+  const openLoginModal = () => {
+    setActiveModal("login");
+  };
+
+  const openEditProfileModal = () => {
+    setActiveModal("edit");
+  };
+
+  const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   }
 
@@ -80,7 +98,7 @@ const handleToggleSwitchChange = () => {
       .catch(console.error);
   }
 
-  const handleLoginModalSubmit = ({ email, password }) => {
+  const handleSignInModalSubmit = ({ email, password }) => {
     login(email, password)
       .then((data) => {
         console.log(data);
@@ -89,29 +107,17 @@ const handleToggleSwitchChange = () => {
       .catch(console.error);
   }
 
-  const handleCardLike = ({ id, isLiked }) => {
-    const token = localStorage.getItem("jwt");
-
-    !isLiked
-      ?
-        api
-          .addCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) => cards.map((item) =>
-              (item._id === id ? updatedCard : item)));
-    })
-    .catch((err) => console.log(err))
-      :
-        api
-          .removeCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) => cards.map((item) =>
-              (item._id === id ? updatedCard : item)));
-    })
-    .catch((err) => console.log(err));
+  const handleEditProfileSubmit = (userData) => {
+    updateUserInfo(userData, localStorage.getItem("jwt"))
+      .then((res) => {
+        setCurrentUser(res.data);
+        closeActiveModal();
+      })
+      .catch((error) =>
+        console.log(error));
   }
 
-  const handleLogin = (userData) => {
+  const handleSignIn = (userData) => {
     setCurrentUser(userData);
     setIsLoggedIn(true);
   }
@@ -142,11 +148,18 @@ const handleToggleSwitchChange = () => {
 
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, isLoggedIn, handleLogout }}>
+    <CurrentUserContext.Provider value={{ currentUser, isLoggedIn, handleSignOut }}>
       <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
         <div className="page">
           <div className="page__content">
-            <Header handleAddClick={handleAddClick} weatherData={weatherData} username={"User name"}/>
+            <Header
+            handleAddClick={handleAddClick}
+            weatherData={weatherData}
+            username={"User name"}
+            isLoggedIn={isLoggedIn}
+            handleRegisterClick={openRegistrationModal}
+            handleLoginClick={openLoginModal}
+            />
             <Routes>
               <Route path="/" element = {
                 <Main
@@ -154,8 +167,7 @@ const handleToggleSwitchChange = () => {
                 onCardClick={handleCardClick}
                 clothingItems={clothingItems}
                 onDeleteClick={handleDeleteClick}
-                onCardLike={handleCardLike}
-                onLogin={handleLogin} />}
+                onSignIn={handleSignIn} />}
               />
               <Route path="/profile" element={
                 <Profile
@@ -163,7 +175,6 @@ const handleToggleSwitchChange = () => {
                 clothingItems={clothingItems}
                 onDeleteClick={handleDeleteClick}
                 handleAddClick={handleAddClick}
-                onCardLike={handleCardLike}
                 onSignOut={handleSignOut} />}
                 />
             </Routes>

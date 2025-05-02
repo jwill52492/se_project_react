@@ -1,9 +1,7 @@
-import { use, useEffect } from "react";
-
-const baseUrl = "http://localhost:3000";
+import { baseUrl } from "./api";
 
 const signup = (email, password, name, avatarUrl) => {
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +18,7 @@ const signup = (email, password, name, avatarUrl) => {
 }
 
 const signin = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -39,25 +37,25 @@ const signin = (email, password) => {
   });
 }
 
-useEffect(() => {
-  const token = localStorage.getItem("jwt");
-  if (token) {
-    fetch(`${BASE_URL}/users/me`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch(console.error);
-  }
-}
-, [token]);
+// useEffect(() => {
+//   const token = localStorage.getItem("jwt");
+//   if (token) {
+//     fetch(`${baseUrl}/users/me`, {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     })
+//     .then((res) => {
+//       return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+//     })
+//     .then((data) => {
+//       console.log(data);
+//     })
+//     .catch(console.error);
+//   }
+// }
+// , [token]);
 
-export { signup, signin };
+export { signup, signin};
