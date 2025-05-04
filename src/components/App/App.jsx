@@ -31,20 +31,12 @@ function App() {
 
   const navigate = useNavigate();
 
-  const openAddItemModal = () => {
-    setActiveModal("create");
-  };
-
   const openRegistrationModal = () => {
     setActiveModal("register");
   };
 
   const openLoginModal = () => {
     setActiveModal("login");
-  };
-
-  const openEditProfileModal = () => {
-    setActiveModal("edit");
   };
 
   const handleToggleSwitchChange = () => {
@@ -64,6 +56,10 @@ function App() {
   const handleAddClick = () => {
     setActiveModal('add-garment');
   };
+
+  const handleEditClick = () => {
+    setActiveModal('change-profile');
+  }
 
   const closeActiveModal = () => {
     setActiveModal("");
@@ -175,6 +171,7 @@ function App() {
                 clothingItems={clothingItems}
                 onDeleteClick={handleDeleteClick}
                 handleAddClick={handleAddClick}
+                handleEditClick={handleEditClick}
                 onSignOut={handleSignOut} />}
                 />
             </Routes>
@@ -184,7 +181,7 @@ function App() {
           <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
           <ItemModal isOpen={activeModal === 'preview'} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
           <DeleteModal isOpen={activeModal === 'delete'} card={selectedCard} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
-          <LoginModal isOpen={activeModal === 'login'} onClose={closeActiveModal} onLoginModalSubmit={handleLoginModalSubmit} onRegisterClick={() => setActiveModal('register')}/>
+          <LoginModal isOpen={activeModal === 'login'} onClose={closeActiveModal} onSignInModalSubmit={handleSignInModalSubmit} onRegisterClick={() => setActiveModal('register')}/>
           <RegisterModal isOpen={activeModal === 'sign up'} onClose={closeActiveModal} onRegisterModalSubmit={handleRegisterModalSubmit} onLoginClick={() => setActiveModal('login')}/>
           <EditProfileModal isOpen={activeModal === 'change-profile'} onClose={closeActiveModal} onEditProfileSubmit={handleEditProfileSubmit}/>
         </div>

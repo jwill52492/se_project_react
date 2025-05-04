@@ -17,7 +17,7 @@ export default function EditProfileModal({ onClose, isOpen, onEditProfileSubmit 
   };
 
   return (
-    <ModalWithForm title="Change profile data" buttonText="Save Changes" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
+    <ModalWithForm title="Change profile" buttonText="Save Changes" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <label className="modal__label" htmlFor="name">
         Name{" "}
         <input type="text" className="modal__input" id="name" placeholder="Name"
