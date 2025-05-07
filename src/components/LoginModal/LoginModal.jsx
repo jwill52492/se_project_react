@@ -30,6 +30,7 @@ export default function SignInModal({ onClose, isOpen, onSignInModalSubmit }) {
           onChange={(e)=>{setPassword(e.target.value)}} value={password} required
         />
       </label>
+      <button className="signup__button" type="button">or Sign Up</button>
     </ModalWithForm>
   )
 }

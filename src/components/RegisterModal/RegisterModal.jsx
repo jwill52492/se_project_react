@@ -46,6 +46,7 @@ export default function RegisterModal({ onClose, isOpen, onRegisterModalSubmit }
           onChange={(e)=>{setAvatarUrl(e.target.value)}} value={avatarUrl} required
         />
       </label>
+      <button className="login__button" type="button">or Log In</button>
     </ModalWithForm>
   )
 }
