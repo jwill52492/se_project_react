@@ -95,7 +95,7 @@ function App() {
   }
 
   const handleSignInModalSubmit = ({ email, password }) => {
-    login(email, password)
+    signin(email, password)
       .then((data) => {
         console.log(data);
         closeActiveModal();
