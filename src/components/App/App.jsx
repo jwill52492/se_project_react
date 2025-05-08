@@ -39,10 +39,6 @@ function App() {
     setActiveModal("login");
   };
 
-  const handleOrSignUpClick = () => {
-    setActiveModal('sign-up');
-  }
-
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   }
@@ -69,6 +65,27 @@ function App() {
     setActiveModal("");
   };
 
+  const handleAddCardLike = (cardId) => {
+    const token = localStorage.getItem("jwt");
+    addCardLike(cardId, token)
+      .then((res) => {
+        setClothingItems((prevItems) =>
+          prevItems.map((item) => (item._id === cardId ? { ...item, likes: res.likes } : item))
+        );
+      })
+      .catch(console.error);
+  };
+
+  const handleRemoveCardLike = (cardId) => {
+    const token = localStorage.getItem("jwt");
+    removeCardLike(cardId, token)
+      .then((res) => {
+        setClothingItems((prevItems) =>
+          prevItems.map((item) => (item._id === cardId ? { ...item, likes: res.likes } : item))
+        );
+      })
+      .catch(console.error);
+  };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, temp }) => {
     addCard({ name, imageUrl, weather: temp })
@@ -176,6 +193,8 @@ function App() {
                 onDeleteClick={handleDeleteClick}
                 handleAddClick={handleAddClick}
                 handleEditClick={handleEditClick}
+                handleAddCardLike={handleAddCardLike}
+                handleRemoveCardLike={handleRemoveCardLike}
                 onSignOut={handleSignOut} />}
                 />
             </Routes>
