@@ -37,25 +37,5 @@ const signin = (email, password) => {
   });
 }
 
-// useEffect(() => {
-//   const token = localStorage.getItem("jwt");
-//   if (token) {
-//     fetch(`${baseUrl}/users/me`, {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//     })
-//     .then((res) => {
-//       return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-//     })
-//     .then((data) => {
-//       console.log(data);
-//     })
-//     .catch(console.error);
-//   }
-// }
-// , [token]);
 
 export { signup, signin};

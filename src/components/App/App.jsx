@@ -31,8 +31,8 @@ function App() {
 
   const navigate = useNavigate();
 
-  const openRegistrationModal = () => {
-    setActiveModal("register");
+  const openRegisterModal = () => {
+    setActiveModal("sign-up");
   };
 
   const openLoginModal = () => {
@@ -153,7 +153,7 @@ function App() {
             weatherData={weatherData}
             username={"User name"}
             isLoggedIn={isLoggedIn}
-            handleRegisterClick={openRegistrationModal}
+            handleRegisterClick={openRegisterModal}
             handleLoginClick={openLoginModal}
             />
             <Routes>
@@ -181,8 +181,8 @@ function App() {
           <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
           <ItemModal isOpen={activeModal === 'preview'} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
           <DeleteModal isOpen={activeModal === 'delete'} card={selectedCard} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
-          <LoginModal isOpen={activeModal === 'login'} onClose={closeActiveModal} onSignInModalSubmit={handleSignInModalSubmit} onRegisterClick={() => setActiveModal('register')}/>
-          <RegisterModal isOpen={activeModal === 'sign up'} onClose={closeActiveModal} onRegisterModalSubmit={handleRegisterModalSubmit} onLoginClick={() => setActiveModal('login')}/>
+          <LoginModal isOpen={activeModal === 'login'} onClose={closeActiveModal} onSignInModalSubmit={handleSignInModalSubmit} onRegisterClick={() => setActiveModal('sign-up')}/>
+          <RegisterModal isOpen={activeModal === 'sign-up'} onClose={closeActiveModal} onRegisterModalSubmit={handleRegisterModalSubmit} onLoginClick={() => setActiveModal('login')}/>
           <EditProfileModal isOpen={activeModal === 'change-profile'} onClose={closeActiveModal} onEditProfileSubmit={handleEditProfileSubmit}/>
         </div>
       </CurrentTemperatureUnitContext.Provider>

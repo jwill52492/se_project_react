@@ -16,7 +16,8 @@ function ItemCard ({ item, onCardClick, onCardLike }) {
   return (
     <li className="card">
       <h2 className="card__name">{item.name}</h2>
-      <img className="card__image" src={item.imageUrl} alt={item.name} onClick={() => { handleCardClick, handleCardLike }} />
+      <img className="card__like" src="src\assets\heart.svg" alt={itemLikeButtonClassName} onClick={handleCardLike} />
+      <img className="card__image" src={item.imageUrl} alt={item.name} onClick={handleCardClick} />
     </li>
   );
 }
