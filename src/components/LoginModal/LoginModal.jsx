@@ -2,7 +2,7 @@ import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useEffect, useState } from "react";
 
-export default function SignInModal({ onClose, isOpen, onSignInModalSubmit }) {
+export default function SignInModal({ onClose, isOpen, onSignInModalSubmit, closeActiveModal }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,6 +15,11 @@ export default function SignInModal({ onClose, isOpen, onSignInModalSubmit }) {
     e.preventDefault();
     onSignInModalSubmit({ email, password });
   };
+
+  const handleOrRegisterClick = () => {
+    closeActiveModal();
+    setActiveModal('sign-up');
+  }
 
   return (
     <ModalWithForm title="Login" buttonText="Log In" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
@@ -30,7 +35,7 @@ export default function SignInModal({ onClose, isOpen, onSignInModalSubmit }) {
           onChange={(e)=>{setPassword(e.target.value)}} value={password} required
         />
       </label>
-      <button className="signup__button" type="button">or Sign Up</button>
+      <button className="signup__button" type="button" onClick={handleOrRegisterClick}>or Sign Up</button>
     </ModalWithForm>
   )
 }
