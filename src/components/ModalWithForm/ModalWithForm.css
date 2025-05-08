@@ -90,7 +90,7 @@ input[type="radio"]{
 }
 
 .modal__submit:disabled {
-  background-color: #0000004D;
+  background-color: #000000;
 }
 
 
@@ -100,7 +100,8 @@ input[type="radio"]{
   padding: 8px 16px;
   width: 120px;
   color:#ffffff;
-  background-color: #000000;
+  background-color: #0000004D;
+  border: none;
 }
 
 .modal__submit:hover {

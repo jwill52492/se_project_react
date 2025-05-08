@@ -20,6 +20,10 @@ export default function RegisterModal({ onClose, isOpen, onRegisterModalSubmit }
     onRegisterModalSubmit({ email, password, name, avatarUrl });
   };
 
+  const handleOrLoginClick = () => {
+    setActiveModal('login');
+  }
+
   return (
     <ModalWithForm title="Sign Up" buttonText="Sign Up" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <label className="modal__label" htmlFor="Email">
@@ -41,7 +45,7 @@ export default function RegisterModal({ onClose, isOpen, onRegisterModalSubmit }
         />
       </label>
       <label className="modal__label" htmlFor="avatarUrl">
-        avatarUrl{" "}
+        AvatarUrl{" "}
         <input type="text" className="modal__input" id="avatarUrl" placeholder="Avatar URL"
           onChange={(e)=>{setAvatarUrl(e.target.value)}} value={avatarUrl} required
         />

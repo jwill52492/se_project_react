@@ -39,6 +39,10 @@ function App() {
     setActiveModal("login");
   };
 
+  const handleOrSignUpClick = () => {
+    setActiveModal('sign-up');
+  }
+
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   }
