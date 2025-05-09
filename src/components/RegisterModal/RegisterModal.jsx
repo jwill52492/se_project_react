@@ -2,7 +2,7 @@ import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useEffect, useState } from "react";
 
-export default function RegisterModal({ onClose, isOpen, onRegisterModalSubmit }) {
+export default function RegisterModal({ onClose, isOpen, onRegisterModalSubmit, switchToLoginModal }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -13,7 +13,7 @@ export default function RegisterModal({ onClose, isOpen, onRegisterModalSubmit }
     setPassword("");
     setName("");
     setAvatarUrl("");
- }, [isOpen]);
+  }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +46,7 @@ export default function RegisterModal({ onClose, isOpen, onRegisterModalSubmit }
           onChange={(e)=>{setAvatarUrl(e.target.value)}} value={avatarUrl} required
         />
       </label>
-      <button className="login__button" type="submit" onClick={onClose}>or Log In</button>
+      <button className="login__button" type="submit" onClick={switchToLoginModal}>or Log In</button>
     </ModalWithForm>
   )
 }

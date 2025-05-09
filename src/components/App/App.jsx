@@ -62,7 +62,15 @@ function App() {
   }
 
   const closeActiveModal = () => {
-    setActiveModal("");
+    setActiveModal(null);
+  };
+
+  const switchToSignInModal = () => {
+    setActiveModal('login');
+  };
+
+  const switchToRegisterModal = () => {
+    setActiveModal('sign-up');
   };
 
   const handleAddCardLike = (cardId) => {
@@ -204,8 +212,8 @@ function App() {
           <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
           <ItemModal isOpen={activeModal === 'preview'} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
           <DeleteModal isOpen={activeModal === 'delete'} card={selectedCard} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
-          <LoginModal isOpen={activeModal === 'login'} onClose={closeActiveModal} onSignInModalSubmit={handleSignInModalSubmit} onRegisterClick={() => setActiveModal('sign-up')}/>
-          <RegisterModal isOpen={activeModal === 'sign-up'} onClose={closeActiveModal} onRegisterModalSubmit={handleRegisterModalSubmit} onLoginClick={() => setActiveModal('login')}/>
+          <LoginModal isOpen={activeModal === 'login'} onClose={closeActiveModal} onSignInModalSubmit={handleSignInModalSubmit} onRegisterClick={switchToRegisterModal}/>
+          <RegisterModal isOpen={activeModal === 'sign-up'} onClose={closeActiveModal} onRegisterModalSubmit={handleRegisterModalSubmit} onLoginClick={switchToSignInModal}/>
           <EditProfileModal isOpen={activeModal === 'change-profile'} onClose={closeActiveModal} onEditProfileSubmit={handleEditProfileSubmit}/>
         </div>
       </CurrentTemperatureUnitContext.Provider>
