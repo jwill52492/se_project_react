@@ -1,3 +1,13 @@
+.button-container {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.button {
+  margin: 10px;
+}
+
 .signup__button {
   background-color: transparent;
   border-radius: none;
@@ -6,3 +16,4 @@
   font-size: 16px;
   line-height: 1.25;
 }
+

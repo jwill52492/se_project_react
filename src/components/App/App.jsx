@@ -22,7 +22,7 @@ import { signup, signin } from '../../utils/auth';
 
 function App() {
   const [weatherData, setWeatherData] = useState({ type:"", temperature: { F: 999 } });
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState(null);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
@@ -65,7 +65,7 @@ function App() {
     setActiveModal(null);
   };
 
-  const switchToSignInModal = () => {
+  const switchToLoginModal = () => {
     setActiveModal('login');
   };
 
@@ -213,7 +213,7 @@ function App() {
           <ItemModal isOpen={activeModal === 'preview'} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
           <DeleteModal isOpen={activeModal === 'delete'} card={selectedCard} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
           <LoginModal isOpen={activeModal === 'login'} onClose={closeActiveModal} onSignInModalSubmit={handleSignInModalSubmit} onRegisterClick={switchToRegisterModal}/>
-          <RegisterModal isOpen={activeModal === 'sign-up'} onClose={closeActiveModal} onRegisterModalSubmit={handleRegisterModalSubmit} onLoginClick={switchToSignInModal}/>
+          <RegisterModal isOpen={activeModal === 'sign-up'} onClose={closeActiveModal} onRegisterModalSubmit={handleRegisterModalSubmit} onLoginClick={switchToLoginModal}/>
           <EditProfileModal isOpen={activeModal === 'change-profile'} onClose={closeActiveModal} onEditProfileSubmit={handleEditProfileSubmit}/>
         </div>
       </CurrentTemperatureUnitContext.Provider>

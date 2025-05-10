@@ -1,3 +1,13 @@
+.button-container {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.button {
+  margin: 10px;
+}
+
 .login__button {
   background-color: transparent;
   border-radius: none;
