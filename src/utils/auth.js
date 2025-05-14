@@ -1,6 +1,6 @@
 import { baseUrl } from "./api";
 
-const signup = (email, password, name, avatarUrl) => {
+const signup = (email, password, name, avatar) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
@@ -10,7 +10,7 @@ const signup = (email, password, name, avatarUrl) => {
       email,
       password,
       name,
-      avatarUrl,
+      avatar,
     }),
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);

@@ -10,9 +10,18 @@
 .sidebar__profile {
   display: flex;
   flex-direction: row;
+  bottom: 24px;
 }
 
 .sidebar__username {
   margin-left: 16px;
+}
+
+.sidebar__button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  bottom: 8px;
 }
 

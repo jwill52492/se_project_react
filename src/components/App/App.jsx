@@ -73,6 +73,18 @@ function App() {
     setActiveModal('sign-up');
   };
 
+  const handleSignIn = (userData) => {
+    setCurrentUser(userData);
+    localStorage.setItem("jwt", userData.token);
+    setIsLoggedIn(true);
+  }
+
+  const handleSignOut = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
   const handleAddCardLike = (cardId) => {
     const token = localStorage.getItem("jwt");
     addCardLike(cardId, token)
@@ -127,7 +139,10 @@ function App() {
     signin(email, password)
       .then((data) => {
         console.log(data);
+        localStorage.setItem("jwt", data.token);
+        setCurrentUser(data);
         closeActiveModal();
+        setIsLoggedIn(true);
       })
       .catch(console.error);
   }
@@ -141,17 +156,6 @@ function App() {
       .catch((error) =>
         console.log(error));
   }
-
-  const handleSignIn = (userData) => {
-    setCurrentUser(userData);
-    setIsLoggedIn(true);
-  }
-
-  const handleSignOut = () => {
-    localStorage.removeItem("jwt");
-    setIsLoggedIn(false);
-    navigate("/");
-  };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -180,7 +184,7 @@ function App() {
             <Header
             handleAddClick={handleAddClick}
             weatherData={weatherData}
-            username={"User name"}
+            username={currentUser?.name}
             isLoggedIn={isLoggedIn}
             handleRegisterClick={openRegisterModal}
             handleLoginClick={openLoginModal}
@@ -212,8 +216,8 @@ function App() {
           <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
           <ItemModal isOpen={activeModal === 'preview'} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
           <DeleteModal isOpen={activeModal === 'delete'} card={selectedCard} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
-          <LoginModal isOpen={activeModal === 'login'} onClose={closeActiveModal} onSignInModalSubmit={handleSignInModalSubmit} />
-          <RegisterModal isOpen={activeModal === 'sign-up'} onClose={closeActiveModal} onRegisterModalSubmit={handleRegisterModalSubmit} />
+          <LoginModal isOpen={activeModal === 'login'} onClose={() => setActiveModal(null)} switchToSignUp={() => switchToSignUpModal()} onSignInModalSubmit={handleSignInModalSubmit} />
+          <RegisterModal isOpen={activeModal === 'sign-up'} onClose={() => setActiveModal(null)} switchToLogin={() => switchToLoginModal()} onRegisterModalSubmit={handleRegisterModalSubmit}/>
           <EditProfileModal isOpen={activeModal === 'change-profile'} onClose={closeActiveModal} onEditProfileSubmit={handleEditProfileSubmit}/>
         </div>
       </CurrentTemperatureUnitContext.Provider>
