@@ -46,7 +46,10 @@ export default function RegisterModal({ onClose, isOpen, onRegisterModalSubmit, 
           onChange={(e)=>{setAvatarUrl(e.target.value)}} value={avatarUrl} required
         />
       </label>
-      <button className="login__button" type="submit" onClick={switchToLoginModal}>or Log In</button>
+      <div className="button__container">
+        <button type="submit" className="modal__submit" disabled={!email || !password || !name || !avatarUrl}>Sign Up </button>
+        <button className="login__button" type="submit" onClick={switchToLoginModal}>or Log In</button>
+      </div>
     </ModalWithForm>
   )
 }

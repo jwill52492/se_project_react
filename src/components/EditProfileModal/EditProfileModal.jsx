@@ -30,6 +30,7 @@ export default function EditProfileModal({ onClose, isOpen, onEditProfileSubmit 
           onChange={(e)=>{setAvatarUrl(e.target.value)}} value={avatarUrl} required
         />
       </label>
+      <button type="submit" className="modal__submit" disabled={!name || !avatarUrl}>Save Changes</button>
     </ModalWithForm>
   )
 }
