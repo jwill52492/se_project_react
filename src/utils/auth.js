@@ -29,11 +29,6 @@ const signin = (email, password) => {
     }),
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  }).then((data) => {
-    if (data.token) {
-      localStorage.setItem("jwt", data.token);
-      return data;
-    }
   });
 }
 

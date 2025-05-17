@@ -73,11 +73,7 @@ function App() {
     setActiveModal('sign-up');
   };
 
-  const handleSignIn = (userData) => {
-    setCurrentUser(userData);
-    localStorage.setItem("jwt", userData.token);
-    setIsLoggedIn(true);
-  }
+
 
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
@@ -195,8 +191,7 @@ function App() {
                 weatherData={weatherData}
                 onCardClick={handleCardClick}
                 clothingItems={clothingItems}
-                onDeleteClick={handleDeleteClick}
-                onSignIn={handleSignIn} />}
+                onDeleteClick={handleDeleteClick}/>}
               />
               <Route path="/profile" element={
                 <Profile
@@ -216,8 +211,8 @@ function App() {
           <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
           <ItemModal isOpen={activeModal === 'preview'} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
           <DeleteModal isOpen={activeModal === 'delete'} card={selectedCard} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
-          <LoginModal isOpen={activeModal === 'login'} onClose={() => setActiveModal(null)} switchToSignUp={() => switchToSignUpModal()} onSignInModalSubmit={handleSignInModalSubmit} />
-          <RegisterModal isOpen={activeModal === 'sign-up'} onClose={() => setActiveModal(null)} switchToLogin={() => switchToLoginModal()} onRegisterModalSubmit={handleRegisterModalSubmit}/>
+          <LoginModal isOpen={activeModal === 'login'} onClose={() => setActiveModal(null)} switchToSignUp={switchToSignUpModal} onSignInModalSubmit={handleSignInModalSubmit} />
+          <RegisterModal isOpen={activeModal === 'sign-up'} onClose={() => setActiveModal(null)} switchToLogin={switchToLoginModal} onRegisterModalSubmit={handleRegisterModalSubmit}/>
           <EditProfileModal isOpen={activeModal === 'change-profile'} onClose={closeActiveModal} onEditProfileSubmit={handleEditProfileSubmit}/>
         </div>
       </CurrentTemperatureUnitContext.Provider>

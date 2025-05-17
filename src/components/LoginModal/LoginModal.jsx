@@ -2,7 +2,7 @@ import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useEffect, useState } from "react";
 
-export default function SignInModal({ onClose, isOpen, onSignInModalSubmit, switchToSignUpModal }) {
+export default function SignInModal({ onClose, isOpen, onSignInModalSubmit, switchToSignUp }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,7 +32,7 @@ export default function SignInModal({ onClose, isOpen, onSignInModalSubmit, swit
       </label>
       <div className="button__container">
         <button className="modal__submit" type="submit" disabled={!email || !password}>Log In</button>
-        <button className="signup__button" type="button" onClick={switchToSignUpModal}>or Sign Up</button>
+        <button className="signup__button" type="button" onClick={switchToSignUp}>or Sign Up</button>
       </div>
     </ModalWithForm>
   )
