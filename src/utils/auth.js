@@ -32,5 +32,16 @@ const signin = (email, password) => {
   });
 }
 
+const tokenCheck = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
+}
 
-export { signup, signin};
+export { signup, signin, tokenCheck };

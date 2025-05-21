@@ -14,11 +14,12 @@ import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import { addCard, deleteCard, getItems, addCardLike, removeCardLike, updateUserInfo } from '../../utils/api';
+import { addCard, deleteCard, getItems, addCardLike, removeCardLike, updateUserInfo, getUserData } from '../../utils/api';
 import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import EditProfileModal from '../EditProfileModal/EditProfileModal';
-import { signup, signin } from '../../utils/auth';
+import { signup, signin, tokenCheck } from '../../utils/auth';
+import { use } from 'react';
 
 function App() {
   const [weatherData, setWeatherData] = useState({ type:"", temperature: { F: 999 } });
@@ -136,8 +137,9 @@ function App() {
       .then((data) => {
         console.log(data);
         localStorage.setItem("jwt", data.token);
-        setCurrentUser(data);
-        closeActiveModal();
+        getUserData()
+        .then(() =>
+        closeActiveModal());
         setIsLoggedIn(true);
       })
       .catch(console.error);
@@ -152,6 +154,10 @@ function App() {
       .catch((error) =>
         console.log(error));
   }
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -171,6 +177,18 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      tokenCheck(token)
+        .then((res) => {
+          setCurrentUser(res.data);
+          setIsLoggedIn(true);
+        })
+        .catch(console.error);
+    }
+  }
+  , []);
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, isLoggedIn, handleSignOut }}>

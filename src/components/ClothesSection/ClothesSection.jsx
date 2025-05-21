@@ -5,11 +5,7 @@ import ItemCard from "../ItemCard/ItemCard";
 
 function ClothesSection ({ onCardClick, clothingItems, handleAddClick }) {
   const { currentUser } = useContext(CurrentUserContext);
-    if (!currentUser) return null;
-  const isOwn = card.owner === currentUser._id;
-  const itemButtonClassName = (
-    `item-modal__delete-button ${isOwn ? 'item-modal__delete-button_visible' : 'item-modal__delete-button_hidden'}`
-  );
+  const userCards = clothingItems.filter((card) => card.owner === currentUser?._id)
 
   return (
     <div className="clothes-section">
