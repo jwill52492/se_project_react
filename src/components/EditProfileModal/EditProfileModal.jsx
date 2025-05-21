@@ -20,13 +20,13 @@ export default function EditProfileModal({ onClose, isOpen, onEditProfileSubmit 
     <ModalWithForm title="Change profile" buttonText="Save Changes" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <label className="modal__label" htmlFor="name">
         Name{" "}
-        <input type="text" className="modal__input" id="name" placeholder="Name"
+        <input type="text" className="modal__input" id="editname" placeholder="Name"
           onChange={(e)=>{setName(e.target.value)}} value={name} required
         />
       </label>
       <label className="modal__label" htmlFor="avatarUrl">
         Avatar{" "}
-        <input type="text" className="modal__input" id="avatarUrl" placeholder="Avatar URL"
+        <input type="text" className="modal__input" id="editavatarUrl" placeholder="Avatar URL"
           onChange={(e)=>{setAvatarUrl(e.target.value)}} value={avatarUrl} required
         />
       </label>

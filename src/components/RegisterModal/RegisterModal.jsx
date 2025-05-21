@@ -24,19 +24,19 @@ export default function RegisterModal({ onClose, isOpen, onRegisterModalSubmit, 
     <ModalWithForm title="Sign Up" buttonText="Sign Up" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <label className="modal__label" htmlFor="Email">
         Email{" "}
-        <input type="email" className="modal__input" id="email" placeholder="Email"
+        <input type="email" className="modal__input" id="newemail" placeholder="Email"
           onChange={(e)=>{setEmail(e.target.value)}} value={email} required
         />
       </label>
       <label className="modal__label" htmlFor="password">
         Password{" "}
-        <input type="password" className="modal__input" id="password" placeholder="Password"
+        <input type="password" className="modal__input" id="newpassword" placeholder="Password"
           onChange={(e)=>{setPassword(e.target.value)}} value={password} required
         />
       </label>
       <label className="modal__label" htmlFor="name">
         Name{" "}
-        <input type="text" className="modal__input" id="name" placeholder="Name"
+        <input type="text" className="modal__input" id="newname" placeholder="Name"
           onChange={(e)=>{setName(e.target.value)}} value={name} required
         />
       </label>

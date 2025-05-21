@@ -2,11 +2,11 @@ import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./ItemModal.css";
 
-function ItemModal({ isOpen, onClose, card, onDeleteClick }) {
+function ItemModal({ isOpen, onClose, selectedCard, onDeleteClick }) {
   const { currentUser } = useContext(CurrentUserContext);
    if (!currentUser) return null;
-  const isOwn = card.owner === currentUser._id;
-  const itemButtonClassName = (
+  const isOwn = currentUser ? selectedCard.owner === currentUser._id : false;
+  const itemDeleteButtonClassName = (
     `item-modal__delete-button ${isOwn ? 'item-modal__delete-button_visible' : 'item-modal__delete-button_hidden'}`
   );
 
@@ -25,9 +25,11 @@ function ItemModal({ isOpen, onClose, card, onDeleteClick }) {
             <h2 className="modal__caption" >{card.name}</h2>
             <p className="modal__weather">Weather: {card.weather}</p>
           </div>
-          <button className="item-modal__delete-button" type="button" onClick={handleDeleteClick}>
-            Delete Item
-          </button>
+          {isOwn && (
+            <button className={itemDeleteButtonClassName} type="button" onClick={handleDeleteClick}>
+              Delete Item
+            </button>
+          )}
         </div>
       </div>
     </div>

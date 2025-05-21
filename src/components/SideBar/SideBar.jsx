@@ -2,7 +2,7 @@ import "./SideBar.css";
 import avatar from "../../assets/avatar.svg";
 import { useReducer } from "react";
 
-function SideBar ({onSignOut, handleEditClick}) {
+function SideBar ({handleSignOutClick, handleEditClick}) {
   return (
     <div className="sidebar">
       <div className="sidebar__profile">
@@ -11,7 +11,7 @@ function SideBar ({onSignOut, handleEditClick}) {
       </div>
       <div className="sidebar__buttons">
         <button className="sidebar__button" type="button" onClick={handleEditClick}>Change Profile Data</button>
-        <button className="sidebar__button" type="button" onClick={onSignOut}>Sign Out</button>
+        <button className="sidebar__button" type="button" onClick={handleSignOutClick}>Sign Out</button>
       </div>
     </div>
   );

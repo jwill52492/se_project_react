@@ -35,7 +35,7 @@ function Header({ handleAddClick, weatherData, isLoggedIn, handleLoginClick, han
                 <img className="navigation__user" src={currentUser?.avatar || avatar} alt="user avatar" />
               ) : (
                 <span className="navigation__user navigation__user_type_none">
-                  {currentUser?.name?.toUpperCase().charAt(0) || "User"}
+                  {currentUser?.name?.toUpperCase().charAt(0) || avatar.charAt(0)}
                 </span>
               )}
             </Link>

@@ -15,6 +15,14 @@ function getUserData() {
   }).then(checkResponse)
 }
 
+function addItem(name, imageUrl, weather) {
+  return fetch(`${baseUrl}/items`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ name, imageUrl, weather })
+  }).then(checkResponse)
+}
+
 function getItems() {
   return fetch(`${baseUrl}/items`, {
     method: "GET",
@@ -37,24 +45,19 @@ function  deleteCard(itemId) {
   }).then(checkResponse)
 }
 
-function addCardLike (id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+
+function addCardLike(itemId) {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "PUT",
-    headers: {
-      authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
+    headers
+  }).then(checkResponse)
 }
 
-function removeCardLike (id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+function removeCardLike(itemId) {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "DELETE",
-    headers: {
-      authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
+    headers
+  }).then(checkResponse)
 }
 
 function updateUserInfo(user) {
@@ -65,4 +68,4 @@ function updateUserInfo(user) {
   }).then(checkResponse)
 }
 
-export { getItems, addCard, deleteCard, checkResponse, addCardLike, removeCardLike, updateUserInfo, getUserData };
+export { getItems, addItem, addCard, deleteCard, checkResponse, addCardLike, removeCardLike, updateUserInfo, getUserData };
