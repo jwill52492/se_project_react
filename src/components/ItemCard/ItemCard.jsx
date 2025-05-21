@@ -4,6 +4,7 @@ import "./ItemCard.css";
 function ItemCard ({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
   const isLiked = item.likes.some(id => id === currentUser._id);
+  const token = localStorage.getItem('jwt');
 
   const handleCardClick = () => {
     onCardClick(item);
