@@ -1,9 +1,10 @@
 import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./ItemCard.css";
 
 function ItemCard ({ item, onCardClick, onCardLike }) {
-  const currentUser = useContext(CurrentUserContext);
-  const isLiked = item.likes.some(id => id === currentUser._id);
+  const currentUser  = useContext(CurrentUserContext);
+  const isLiked = currentUser && item.likes ? item.likes.some(id => id === currentUser._id) : false;
   const token = localStorage.getItem('jwt');
 
   const handleCardClick = () => {

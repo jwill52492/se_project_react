@@ -1,18 +1,14 @@
 export const baseUrl = 'http://localhost:3001';
-const headers = { "Content-Type": "application/json" };
+const headers = {
+  "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
+  "Content-Type": "application/json"
+};
 
 function checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
   return Promise.reject(`Error ${res.status}`);
-}
-
-function getUserData() {
-  return fetch(`${baseUrl}/users/me`, {
-    method: "GET",
-    headers
-  }).then(checkResponse)
 }
 
 function addItem(name, imageUrl, weather) {
@@ -56,6 +52,13 @@ function addCardLike(itemId) {
 function removeCardLike(itemId) {
   return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "DELETE",
+    headers
+  }).then(checkResponse)
+}
+
+function getUserData() {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
     headers
   }).then(checkResponse)
 }

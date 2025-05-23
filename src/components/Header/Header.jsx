@@ -9,8 +9,6 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 function Header({ handleAddClick, weatherData, isLoggedIn, handleLoginClick, handleRegisterClick }) {
   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
   const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser);
-
 
   return (
     <header className="header">
