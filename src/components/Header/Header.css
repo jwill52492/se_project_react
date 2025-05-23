@@ -46,6 +46,7 @@
 
 .navigation__button {
   margin-left: 20px;
+  bottom: 8px;
   border-radius: 0;
   background-color: transparent;
   border: none;

@@ -1,8 +1,11 @@
 import "./SideBar.css";
 import avatar from "../../assets/avatar.svg";
-import { useReducer } from "react";
+import {useContext} from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function SideBar ({handleSignOutClick, handleEditClick}) {
+function SideBar ({handleSignOutClick, handleEditProfileClick}) {
+  const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <div className="sidebar">
       <div className="sidebar__profile">
@@ -10,7 +13,7 @@ function SideBar ({handleSignOutClick, handleEditClick}) {
         <p className="sidebar__username">Johnnathon Williams</p>
       </div>
       <div className="sidebar__buttons">
-        <button className="sidebar__button" type="button" onClick={handleEditClick}>Change Profile Data</button>
+        <button className="sidebar__button" type="button" onClick={handleEditProfileClick}>Change Profile Data</button>
         <button className="sidebar__button" type="button" onClick={handleSignOutClick}>Sign Out</button>
       </div>
     </div>

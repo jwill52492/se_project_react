@@ -58,7 +58,7 @@ function App() {
     setActiveModal('add-garment');
   };
 
-  const handleEditClick = () => {
+  const handleEditProfileClick = () => {
     setActiveModal('change-profile');
   }
 
@@ -75,9 +75,10 @@ function App() {
     setActiveModal('sign-up');
   };
 
-  const handleSignOut = () => {
+  const handleSignOutClick = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
+    setCurrentUser(null);
     navigate("/");
   };
 
@@ -112,18 +113,14 @@ function App() {
       .catch(console.error);
   }
 
-  const handleEditProfile = (userData) => {
-    updateUserInfo(userData, localStorage.getItem("jwt"))
-      .then((res) => {
-        setCurrentUser(res.data);
-        closeActiveModal();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const handleSignOut = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    navigate("/");
+  }
 
-  const handleAddCardLike = (item, isLiked) => {
+  const handleCardLike = (item, isLiked) => {
     const method = isLiked ? removeCardLike : addCardLike;
     method(item._id)
       .then((newItem) => {
@@ -246,11 +243,10 @@ function App() {
                   addItem={addItem}
                   onDeleteClick={handleDeleteClick}
                   handleAddClick={handleAddClick}
-                  handleEditClick={handleEditClick}
-                  handleAddCardLike={handleAddCardLike}
+                  handleCardLike={handleCardLike}
                   handleRemoveCardLike={handleRemoveCardLike}
-                  handleEditProfile={handleEditProfile}
-                   handleSignOut={handleSignOut}
+                  handleEditProfileClick={handleEditProfileClick}
+                  handleSignOutClick={handleSignOutClick}
                  />
                 }
               />
