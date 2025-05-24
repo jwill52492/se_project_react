@@ -25,8 +25,3 @@
   background-color: #00000099;
 }
 
-.button__container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}

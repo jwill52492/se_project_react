@@ -1,8 +1,8 @@
 export const baseUrl = 'http://localhost:3001';
-const headers = {
+const headers = () => ({
   "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
   "Content-Type": "application/json"
-};
+});
 
 function checkResponse(res) {
   if (res.ok) {
@@ -14,7 +14,7 @@ function checkResponse(res) {
 function addItem(name, imageUrl, weather) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers,
+    headers: headers(),
     body: JSON.stringify({ name, imageUrl, weather })
   }).then(checkResponse)
 }
@@ -22,14 +22,14 @@ function addItem(name, imageUrl, weather) {
 function getItems() {
   return fetch(`${baseUrl}/items`, {
     method: "GET",
-    headers
+    headers: headers(),
   }).then(checkResponse)
 }
 
 function addCard(card) {
   return fetch( `${baseUrl}/items`, {
     method: "POST",
-    headers,
+    headers: headers(),
     body: JSON.stringify(card)
   }).then(checkResponse)
 }
@@ -37,7 +37,7 @@ function addCard(card) {
 function  deleteCard(itemId) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
-    headers
+    headers: headers(),
   }).then(checkResponse)
 }
 
@@ -45,28 +45,28 @@ function  deleteCard(itemId) {
 function addCardLike(itemId) {
   return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "PUT",
-    headers
+    headers: headers(),
   }).then(checkResponse)
 }
 
 function removeCardLike(itemId) {
   return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "DELETE",
-    headers
+    headers: headers(),
   }).then(checkResponse)
 }
 
 function getUserData() {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
-    headers
+    headers: headers(),
   }).then(checkResponse)
 }
 
 function updateUserInfo(user) {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
-    headers,
+    headers: headers(),
     body: JSON.stringify(user)
   }).then(checkResponse)
 }

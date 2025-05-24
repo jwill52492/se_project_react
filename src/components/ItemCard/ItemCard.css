@@ -23,6 +23,8 @@
 }
 
 .card__like {
+  left: -30px;
+  margin: 0;
   background-color: transparent;
   border-radius: 4px;
   height: 15px;
