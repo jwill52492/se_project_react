@@ -1,5 +1,12 @@
 import { baseUrl } from "./api";
 
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error ${res.status}`);
+}
+
 const signup = (email, password, name, avatar) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
@@ -12,9 +19,7 @@ const signup = (email, password, name, avatar) => {
       name,
       avatar,
     }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse)
 }
 
 const signin = (email, password) => {
@@ -27,9 +32,7 @@ const signin = (email, password) => {
       email,
       password,
     }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse)
 }
 
 const tokenCheck = (token) => {
@@ -39,9 +42,7 @@ const tokenCheck = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse)
 }
 
 export { signup, signin, tokenCheck };

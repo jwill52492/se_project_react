@@ -9,12 +9,12 @@ function SideBar ({handleSignOutClick, handleEditProfileClick}) {
   return (
     <div className="sidebar">
       <div className="sidebar__profile">
-        <img className="sidebar__avatar" src={avatar} alt="default avatar" />
-        <p className="sidebar__username">Johnnathon Williams</p>
+        <img className="sidebar__avatar" src={currentUser?.avatarImage || avatar} alt="default avatar" />
+        <p className="sidebar__username">{currentUser?.username}</p>
       </div>
       <div className="sidebar__buttons">
-        <button className="sidebar__button" type="button" onClick={handleEditProfileClick}>Change Profile Data</button>
-        <button className="sidebar__button" type="button" onClick={handleSignOutClick}>Sign Out</button>
+        <button className="sidebar__button" onClick={handleEditProfileClick}>Change profile data</button>
+        <button className="sidebar__button" onClick={handleSignOutClick}>Log out</button>
       </div>
     </div>
   );

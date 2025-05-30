@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+
 
 import './App.css';
 import { coordinates, APIkey } from '../../utils/constants';
@@ -27,7 +28,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ function App() {
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setActiveModal('preview');
+    console.log(activeModal);
   }
 
   const handleDeleteClick = (card) => {
@@ -120,12 +122,11 @@ function App() {
     navigate("/");
   }
 
-  const handleCardLike = (item, isLiked) => {
-    const method = isLiked ? removeCardLike : addCardLike;
-    method(item._id)
-      .then((newItem) => {
+  const handleCardLike = ({ card, isLiked }) => {
+    console.log(card)
+    return isLiked ? removeCardLike : addCardLike(card._id).then((newItem) => {
         setClothingItems((prevItems) =>
-          prevItems.map((prevItem) => (prevItem._id === item._id ? newItem : prevItem))
+          prevItems.map((prevItem) => (prevItem._id === card._id ? newItem : prevItem))
         );
       })
       .catch(console.error);
@@ -213,6 +214,10 @@ function App() {
       .catch(console.error);
   }, []);
 
+  const ProtectedRoute = ({ isloggedIn, children }) => {
+   return isloggedIn ? children : <Navigate to="/" />;
+  };
+
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, isLoggedIn, handleSignOut }}>
@@ -231,23 +236,26 @@ function App() {
               <Route path="/" element = {
                 <Main
                 weatherData={weatherData}
-                onCardClick={handleCardClick}
+                handleCardClick={handleCardClick}
+                handleCardLike={handleCardLike}
                 clothingItems={clothingItems}
-                onDeleteClick={handleDeleteClick}
-                handleSignIn={handleSignIn}/>}
+                handleDeleteClick={handleDeleteClick}
+                onSignIn={handleSignIn}/>}
               />
               <Route path="/profile" element={
-                <Profile
-                  onCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                  addItem={addItem}
-                  onDeleteClick={handleDeleteClick}
-                  handleAddClick={handleAddClick}
-                  handleCardLike={handleCardLike}
-                  handleRemoveCardLike={handleRemoveCardLike}
-                  handleEditProfileClick={handleEditProfileClick}
-                  handleSignOutClick={handleSignOutClick}
-                 />
+                <ProtectedRoute isloggedIn={isLoggedIn}>
+                  <Profile
+                    handleCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                    addItem={addItem}
+                    handleDeleteClick={handleDeleteClick}
+                    handleAddClick={handleAddClick}
+                    handleCardLike={handleCardLike}
+                    handleRemoveCardLike={handleRemoveCardLike}
+                    handleEditProfileClick={handleEditProfileClick}
+                    handleSignOutClick={handleSignOutClick}
+                  />
+                </ProtectedRoute>
                 }
               />
             </Routes>

@@ -57,6 +57,7 @@ function removeCardLike(itemId) {
 }
 
 function getUserData() {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: headers(),

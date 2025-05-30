@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./ItemModal.css";
+import "../ModalWithForm/ModalWithForm.css"
 
-function ItemModal({ isOpen, onClose, selectedCard, onDeleteClick }) {
+const ItemModal = ({ isOpen, onClose, selectedCard, handleDeleteClick }) => {
   const { currentUser } = useContext(CurrentUserContext);
    if (!currentUser) return null;
   const isOwn = currentUser ? selectedCard.owner === currentUser._id : false;
@@ -13,6 +14,8 @@ function ItemModal({ isOpen, onClose, selectedCard, onDeleteClick }) {
   function handleDeleteClick() {
     onDeleteClick(card);
   }
+
+  console.log(selectedCard);
   return (
     <div className={`modal ${isOpen ? "modal_opened": ""}`}>
       <div className={"modal__content modal__content_type_image"}>

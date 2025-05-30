@@ -23,6 +23,8 @@
 }
 
 .header__add-clothes-button {
+  border: none;
+  background-color: transparent;
   margin-left: 20px;
 }
 
