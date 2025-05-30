@@ -46,6 +46,11 @@
   align-items: center;
 }
 
+.navigation__user {
+  width: 40px;
+  height: 40px;
+}
+
 .navigation__button {
   margin-left: 20px;
   bottom: 8px;

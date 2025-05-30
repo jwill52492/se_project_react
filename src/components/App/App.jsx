@@ -28,7 +28,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
@@ -176,9 +176,11 @@ function App() {
         console.log(data);
         localStorage.setItem("jwt", data.token);
         getUserData()
-        .then(() =>
-        closeActiveModal());
-        setIsLoggedIn(true);
+        .then((UserData) => {
+        setCurrentUser(UserData)
+        closeActiveModal()
+      });
+      setIsLoggedIn(true)
       })
       .catch(console.error);
   }
@@ -247,8 +249,9 @@ function App() {
                   <Profile
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    username={currentUser?.name}
                     addItem={addItem}
-                    handleDeleteClick={handleDeleteClick}
+                    DeleteClick={handleDeleteClick}
                     handleAddClick={handleAddClick}
                     handleCardLike={handleCardLike}
                     handleRemoveCardLike={handleRemoveCardLike}
