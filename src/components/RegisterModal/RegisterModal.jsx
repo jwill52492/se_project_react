@@ -48,7 +48,7 @@ export default function RegisterModal({ onClose, isOpen, onRegisterModalSubmit, 
       </label>
       <div className="button__container">
         <button type="submit" className="modal__submit" disabled={!email || !password || !name || !avatarUrl}>Sign Up </button>
-        <button className="login__button" type="submit" onClick={switchToLogin}>or Log In</button>
+        <button className="login__button" type="button" onClick={switchToLogin}>or Log In</button>
       </div>
     </ModalWithForm>
   )

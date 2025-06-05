@@ -15,7 +15,7 @@ import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import { addCard, deleteCard, getItems, addItem, addCardLike, removeCardLike, updateUserInfo, getUserData } from '../../utils/api';
+import { addCard, deleteCard, getItems, addItem, toggleCardLike, updateUserInfo, getUserData } from '../../utils/api';
 import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import EditProfileModal from '../EditProfileModal/EditProfileModal';
@@ -48,7 +48,6 @@ function App() {
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setActiveModal('preview');
-    console.log(activeModal);
   }
 
   const handleDeleteClick = (card) => {
@@ -70,10 +69,12 @@ function App() {
   };
 
   const switchToLoginModal = () => {
+    closeActiveModal("")
     setActiveModal('login');
   };
 
   const switchToSignUpModal = () => {
+    closeActiveModal("")
     setActiveModal('sign-up');
   };
 
@@ -99,6 +100,10 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    handleTokenCheck();
+  }, [])
+
   const handleSignIn = ({ email, password }) => {
     signin(email, password)
       .then((data) => {
@@ -122,25 +127,16 @@ function App() {
     navigate("/");
   }
 
-  const handleCardLike = ({ card, isLiked }) => {
-    console.log(card)
-    return isLiked ? removeCardLike : addCardLike(card._id).then((newItem) => {
-        setClothingItems((prevItems) =>
-          prevItems.map((prevItem) => (prevItem._id === card._id ? newItem : prevItem))
-        );
-      })
-      .catch(console.error);
+  const handleToggleCardLike = ({ card, isLiked }) => {
+    (isLiked ? removeCardLike(card._id) : addCardLike(card._id))
+    .then((newItem) => {
+      setClothingItems((prevItems) =>
+        prevItems.map((prevItem) => (prevItem._id === card._id ? newItem : prevItem))
+      );
+    })
+    .catch(console.error);
   };
 
-  const handleRemoveCardLike = (item) => {
-    removeCardLike(item._id)
-      .then((newItem) => {
-        setClothingItems((prevItems) =>
-          prevItems.map((prevItem) => (prevItem._id === item._id ? newItem : prevItem))
-        );
-      })
-      .catch(console.error);
-  };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, temp }) => {
     addCard({ name, imageUrl, weather: temp })
@@ -239,7 +235,7 @@ function App() {
                 <Main
                 weatherData={weatherData}
                 handleCardClick={handleCardClick}
-                handleCardLike={handleCardLike}
+                handleToggleCardLike={handleToggleCardLike}
                 clothingItems={clothingItems}
                 handleDeleteClick={handleDeleteClick}
                 onSignIn={handleSignIn}/>}
@@ -251,10 +247,9 @@ function App() {
                     clothingItems={clothingItems}
                     username={currentUser?.name}
                     addItem={addItem}
-                    DeleteClick={handleDeleteClick}
+                    deleteClick={handleDeleteClick}
                     handleAddClick={handleAddClick}
-                    handleCardLike={handleCardLike}
-                    handleRemoveCardLike={handleRemoveCardLike}
+                    handleToggleCardLike={handleToggleCardLike}
                     handleEditProfileClick={handleEditProfileClick}
                     handleSignOutClick={handleSignOutClick}
                   />
@@ -265,12 +260,12 @@ function App() {
 
             <Footer />
           </div>
-          <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} onAddItemModalSubmit={handleAddItemModalSubmit}/>
-          <ItemModal isOpen={activeModal === 'preview'} card={selectedCard} onClose={closeActiveModal} onDeleteClick={handleDeleteClick} />
-          <DeleteModal isOpen={activeModal === 'delete'} card={selectedCard} onClose={closeActiveModal} onDeleteModalSubmit={handleDeleteModalSubmit}/>
-          <LoginModal isOpen={activeModal === 'login'} onClose={() => setActiveModal(null)} switchToSignUp={switchToSignUpModal} onSignInModalSubmit={handleSignInModalSubmit} />
-          <RegisterModal isOpen={activeModal === 'sign-up'} onClose={() => setActiveModal(null)} switchToLogin={switchToLoginModal} onRegisterModalSubmit={handleRegisterModalSubmit}/>
-          <EditProfileModal isOpen={activeModal === 'change-profile'} onClose={closeActiveModal} onEditProfileSubmit={handleEditProfileSubmit}/>
+          <AddItemModal isOpen={activeModal === "add-garment"} onClose={closeActiveModal} handleAddItemModalSubmit={handleAddItemModalSubmit}/>
+          <ItemModal isOpen={activeModal === 'preview'} card={selectedCard} onClose={closeActiveModal} handleDeleteClick={handleDeleteClick} />
+          <DeleteModal isOpen={activeModal === 'delete'} card={selectedCard} onClose={closeActiveModal} handleDeleteModalSubmit={handleDeleteModalSubmit}/>
+          <LoginModal isOpen={activeModal === 'login'} onClose={() => setActiveModal(null)} switchToSignUp={switchToSignUpModal} handleSignInModalSubmit={handleSignInModalSubmit} />
+          <RegisterModal isOpen={activeModal === 'sign-up'} onClose={() => setActiveModal(null)} switchToLogin={switchToLoginModal} handleRegisterModalSubmit={handleRegisterModalSubmit}/>
+          <EditProfileModal isOpen={activeModal === 'change-profile'} onClose={closeActiveModal} handleEditProfileSubmit={handleEditProfileSubmit}/>
         </div>
       </CurrentTemperatureUnitContext.Provider>
     </CurrentUserContext.Provider>

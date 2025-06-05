@@ -1,11 +1,6 @@
 import { baseUrl } from "./api";
+import { checkResponse } from "./api";
 
-function checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error ${res.status}`);
-}
 
 const signup = (email, password, name, avatar) => {
   return fetch(`${baseUrl}/signup`, {

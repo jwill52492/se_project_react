@@ -3,7 +3,6 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./ItemCard.css";
 
 function ItemCard ({ card, handleCardClick, handleCardLike }) {
-  console.log(handleCardClick);
   const currentUser = useContext(CurrentUserContext);
   const isLiked = currentUser?._id && card.likes.some(id => id === currentUser._id);
   const token = localStorage.getItem('jwt');
