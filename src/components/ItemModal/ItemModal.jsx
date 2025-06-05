@@ -4,10 +4,7 @@ import "./ItemModal.css";
 import "../ModalWithForm/ModalWithForm.css";
 
 const ItemModal = ({ isOpen, onClose, card, handleDeleteClick }) => {
-  console.log("isOpen", isOpen);
   const { currentUser } = useContext(CurrentUserContext);
-  console.log("currentUser", currentUser);
-  console.log("card", card);
   if (!card) return null;
 
   const isOwn = currentUser ? card.owner === currentUser._id : false;
