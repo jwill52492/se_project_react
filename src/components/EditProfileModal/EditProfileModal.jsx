@@ -1,19 +1,22 @@
 import "./EditProfileModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-export default function EditProfileModal({ onClose, isOpen, onEditProfileSubmit }) {
+export default function EditProfileModal({ onClose, isOpen, handleEditProfileSubmit }) {
+  const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
 
+
   useEffect(() => {
-    setName("");
-    setAvatarUrl("");
-  }, [isOpen]);
+    setName(currentUser.currentUser?.name || "");
+    setAvatarUrl(currentUser.currentUser?.avatar || "");
+  }, [isOpen, currentUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onEditProfileSubmit({ name, avatarUrl });
+    handleEditProfileSubmit({ name, avatarUrl });
   };
 
   return (

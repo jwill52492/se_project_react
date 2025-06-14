@@ -5,7 +5,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
 
-function Profile ({ handleCardClick, clothingItems, handleAddClick, handleDeleteClick, handleEditProfileClick, handleSignOutClick, handleCardLike, handleRemoveCardLike }) {
+function Profile ({ handleCardClick, clothingItems, handleAddClick, handleDeleteClick, handleEditProfileClick, handleSignOutClick, handleCardLike }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -14,7 +14,7 @@ function Profile ({ handleCardClick, clothingItems, handleAddClick, handleDelete
         <SideBar handleEditProfileClick={handleEditProfileClick} handleSignOutClick={handleSignOutClick}/>
       </section>
       <section className="profile__clothing-items">
-        <ClothesSection  clothingItems={clothingItems} handleCardClick={handleCardClick} handleAddClick={handleAddClick} handleDeleteClick={handleDeleteClick} />
+        <ClothesSection  clothingItems={clothingItems} handleCardClick={handleCardClick} handleAddClick={handleAddClick} handleDeleteClick={handleDeleteClick} handleCardLike={handleCardLike} />
       </section>
     </div>
   );

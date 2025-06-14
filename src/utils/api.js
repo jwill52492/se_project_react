@@ -42,7 +42,7 @@ function  deleteCard(itemId) {
 }
 
 
-function toggleCardLike (cardId) {
+function cardLike (cardId) {
   return fetch(`${baseUrl}/items/${cardId}/likes`, {
     method: isLiked ? "DELETE" : "PUT",
     headers: {
@@ -68,4 +68,4 @@ function updateUserInfo(user) {
   }).then(checkResponse)
 }
 
-export { getItems, addItem, addCard, deleteCard, checkResponse, toggleCardLike, updateUserInfo, getUserData };
+export { getItems, addItem, addCard, deleteCard, checkResponse, cardLike, updateUserInfo, getUserData };

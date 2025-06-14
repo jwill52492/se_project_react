@@ -15,7 +15,7 @@ import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import { addCard, deleteCard, getItems, addItem, toggleCardLike, updateUserInfo, getUserData } from '../../utils/api';
+import { addCard, deleteCard, getItems, addItem, cardLike, updateUserInfo, getUserData } from '../../utils/api';
 import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import EditProfileModal from '../EditProfileModal/EditProfileModal';
@@ -127,14 +127,24 @@ function App() {
     navigate("/");
   }
 
-  const handleToggleCardLike = ({ card, isLiked }) => {
-    (isLiked ? removeCardLike(card._id) : addCardLike(card._id))
-    .then((newItem) => {
-      setClothingItems((prevItems) =>
-        prevItems.map((prevItem) => (prevItem._id === card._id ? newItem : prevItem))
-      );
-    })
-    .catch(console.error);
+
+  const handleCardLike = ({ id, isLiked }) => {
+  const token = localStorage.getItem("jwt");
+  isLiked
+    ? api.addCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err))
+    : api.removeCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
   };
 
 
@@ -184,7 +194,7 @@ function App() {
   const handleEditProfileSubmit = (userData) => {
     updateUserInfo(userData, localStorage.getItem("jwt"))
       .then((res) => {
-        setCurrentUser(res.data);
+        setCurrentUser(res);
         closeActiveModal();
       })
       .catch((error) =>
@@ -235,7 +245,7 @@ function App() {
                 <Main
                 weatherData={weatherData}
                 handleCardClick={handleCardClick}
-                handleToggleCardLike={handleToggleCardLike}
+                handleCardLike={handleCardLike}
                 clothingItems={clothingItems}
                 handleDeleteClick={handleDeleteClick}
                 onSignIn={handleSignIn}/>}
@@ -249,7 +259,7 @@ function App() {
                     addItem={addItem}
                     deleteClick={handleDeleteClick}
                     handleAddClick={handleAddClick}
-                    handleToggleCardLike={handleToggleCardLike}
+                    handleCardLike={handleCardLike}
                     handleEditProfileClick={handleEditProfileClick}
                     handleSignOutClick={handleSignOutClick}
                   />
