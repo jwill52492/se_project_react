@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import heart from "../assets/heart.svg";
-import heartf from "../assets/heartf.svg";
+import heart from "../../assets/heart.svg";
+import heartf from "../../assets/heartf.svg";
 import "./ItemCard.css";
 
 function ItemCard ({ card, handleCardClick, handleCardLike }) {
