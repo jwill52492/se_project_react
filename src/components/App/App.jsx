@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
 import './App.css';
 import { coordinates, APIkey } from '../../utils/constants';
+
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -131,14 +132,14 @@ function App() {
   const handleCardLike = ({ id, isLiked }) => {
   const token = localStorage.getItem("jwt");
   isLiked
-    ? api.addCardLike(id, token)
+    ? addCardLike(id, token)
         .then((updatedCard) => {
           setClothingItems((cards) =>
             cards.map((item) => (item._id === id ? updatedCard : item))
           );
         })
         .catch((err) => console.log(err))
-    : api.removeCardLike(id, token)
+    : removeCardLike(id, token)
         .then((updatedCard) => {
           setClothingItems((cards) =>
             cards.map((item) => (item._id === id ? updatedCard : item))
