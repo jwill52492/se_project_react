@@ -11,7 +11,7 @@ function checkResponse(res) {
   return Promise.reject(`Error ${res.status}`);
 }
 
-function addItem(name, imageUrl, weather) {
+function addItem({ name, imageUrl, weather }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: headers(),
@@ -42,15 +42,15 @@ function  deleteCard(itemId) {
 }
 
 
-function addCardLike (cardId) {
-  return fetch(`${baseUrl}/items/${cardId}/likes`, {
+function addCardLike(itemId) {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "PUT",
     headers: headers(),
   }).then(checkResponse)
 }
 
-function removeCardLike (cardId) {
-  return fetch(`${baseUrl}/items/${cardId}/likes`, {
+function removeCardLike(itemId) {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "DELETE",
     headers: headers(),
   }).then(checkResponse)
