@@ -110,13 +110,7 @@ function App() {
       .then((data) => {
         localStorage.setItem("jwt", data.token);
         setIsLoggedIn(true);
-        getUserData()
-          .then((userData) => {
-            setCurrentUser(userData);
-            handleTokenCheck();
-            navigate("/profile");
-          })
-          .catch(console.error);
+        handleTokenCheck();
       })
       .catch(console.error);
   }
