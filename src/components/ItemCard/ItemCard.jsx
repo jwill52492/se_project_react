@@ -16,7 +16,7 @@ function ItemCard ({ card, handleCardClick, handleCardLike }) {
   return (
     <li className="card">
       <h2 className="card__name">{card.name}
-         {token && (<img className="card__like" src={heartIcon} alt={itemLikeButtonClassName} onClick={() => handleCardLike({ card, isLiked })} />)}
+         {token && (<img className="card__like" src={heartIcon} alt={itemLikeButtonClassName} onClick={() => handleCardLike({ id: card._id, isLiked })} />)}
       </h2>
       <img className="card__image" src={card.imageUrl} alt={card.name} onClick={handleClick} />
     </li>
