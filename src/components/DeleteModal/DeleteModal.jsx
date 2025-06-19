@@ -1,10 +1,8 @@
 import "./DeleteModal.css";
 
 
-function DeleteModal ({ isOpen, onClose, itemId, onDeleteModalSubmit }) {
-  function handleDeleteModalSubmit() {
-    onDeleteModalSubmit(itemId);
-  }
+function DeleteModal ({ isOpen, onClose, itemId, handleDeleteModalSubmit }) {
+
 
   return (
     <div className={`modal ${isOpen ? "modal_opened": ""}`}>

@@ -16,7 +16,7 @@ import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import { addCard, deleteCard, getItems, addItem, cardLike, updateUserInfo, getUserData } from '../../utils/api';
+import { addCard, deleteCard, getItems, addItem, addCardLike, removeCardLike, updateUserInfo, getUserData } from '../../utils/api';
 import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import EditProfileModal from '../EditProfileModal/EditProfileModal';
@@ -150,7 +150,7 @@ function App() {
 
 
   const handleAddItemModalSubmit = ({ name, imageUrl, temp }) => {
-    addCard({ name, imageUrl, weather: temp })
+    addItem({ name, imageUrl, weather: temp })
     .then((newItem) => {
       setClothingItems((prevItems) => [newItem, ...prevItems]);
       closeActiveModal();
@@ -159,6 +159,8 @@ function App() {
   };
 
   const handleDeleteModalSubmit = () => {
+    if (!selectedCard || !selectedCard._id) return;
+
     const itemId = selectedCard._id;
     deleteCard(itemId)
     .then(() => {
@@ -198,12 +200,14 @@ function App() {
         setCurrentUser(res);
         closeActiveModal();
       })
-      .catch((error) =>
-        console.log(error));
+      .catch((error) => console.log(error));
   }
 
   useEffect(() => {
-    getUserData();
+    getUserData()
+      .then((data) => {
+      setCurrentUser(data);
+    })
   }, []);
 
   useEffect(() => {

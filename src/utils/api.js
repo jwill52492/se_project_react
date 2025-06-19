@@ -42,13 +42,17 @@ function  deleteCard(itemId) {
 }
 
 
-function cardLike (cardId) {
+function addCardLike (cardId) {
   return fetch(`${baseUrl}/items/${cardId}/likes`, {
-    method: isLiked ? "DELETE" : "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    method: "PUT",
+    headers: headers(),
+  }).then(checkResponse)
+}
+
+function removeCardLike (cardId) {
+  return fetch(`${baseUrl}/items/${cardId}/likes`, {
+    method: "DELETE",
+    headers: headers(),
   }).then(checkResponse)
 }
 
@@ -68,4 +72,4 @@ function updateUserInfo(user) {
   }).then(checkResponse)
 }
 
-export { getItems, addItem, addCard, deleteCard, checkResponse, cardLike, updateUserInfo, getUserData };
+export { getItems, addItem, addCard, deleteCard, checkResponse, addCardLike, removeCardLike, updateUserInfo, getUserData };
