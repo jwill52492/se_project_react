@@ -16,18 +16,18 @@ export default function EditProfileModal({ onClose, isOpen, handleEditProfileSub
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleEditProfileSubmit({ name, avatarUrl });
+    handleEditProfileSubmit({ name, avatar: avatarUrl });
   };
 
   return (
     <ModalWithForm title="Change profile" buttonText="Save Changes" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
-      <label className="modal__label" htmlFor="name">
+      <label className="modal__label">
         Name{" "}
         <input type="text" className="modal__input" id="editname" placeholder="Name"
           onChange={(e)=>{setName(e.target.value)}} value={name} required
         />
       </label>
-      <label className="modal__label" htmlFor="avatarUrl">
+      <label className="modal__label">
         Avatar{" "}
         <input type="text" className="modal__input" id="editavatarUrl" placeholder="Avatar URL"
           onChange={(e)=>{setAvatarUrl(e.target.value)}} value={avatarUrl} required

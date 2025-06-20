@@ -5,8 +5,9 @@ import heartf from "../../assets/heartf.svg";
 import "./ItemCard.css";
 
 function ItemCard ({ card, handleCardClick, handleCardLike }) {
-  const currentUser = useContext(CurrentUserContext);
+  const {currentUser} = useContext(CurrentUserContext);
   const isLiked = currentUser?._id && card.likes.includes(currentUser._id);
+  console.log(card, currentUser, isLiked);
   const token = localStorage.getItem('jwt');
 
   const itemLikeButtonClassName = `card__like-button ${isLiked ? 'card__like-button_active' : ''}`;
