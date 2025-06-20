@@ -23,13 +23,13 @@ export default function AddItemModal({ onClose, isOpen, handleAddItemModalSubmit
 
   return (
     <ModalWithForm title="New garment" buttonText="Add garment" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
-      <label className="modal__label" htmlFor="name">
+      <label className="modal__label">
         Name{" "}
         <input type="text" className="modal__input" id="name" placeholder="Name"
           onChange={(e)=>{setName(e.target.value)}} value={name} required
         />
       </label>
-      <label className="modal__label" htmlFor="imageUrl">
+      <label className="modal__label">
         Image{" "}
         <input type="text" className="modal__input" id="imageUrl" placeholder="Image URL"
           onChange={(e)=>{setImageUrl(e.target.value)}} value={imageUrl}required

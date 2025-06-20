@@ -18,13 +18,13 @@ export default function SignInModal({ onClose, isOpen, handleSignInModalSubmit, 
 
   return (
     <ModalWithForm title="Login" buttonText="Log In" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
-      <label className="modal__label" htmlFor="Email">
+      <label className="modal__label">
         Email{" "}
         <input type="email" className="modal__input" id="email" placeholder="Email"
           onChange={(e)=>{setEmail(e.target.value)}} value={email} required
         />
       </label>
-      <label className="modal__label" htmlFor="password">
+      <label className="modal__label">
         Password{" "}
         <input type="password" className="modal__input" id="password" placeholder="Password"
           onChange={(e)=>{setPassword(e.target.value)}} value={password} required
