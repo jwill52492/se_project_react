@@ -1,4 +1,7 @@
-export const baseUrl = 'http://localhost:3001';
+export const baseUrl = process.env.NODE_ENV === "production"
+  ? "https://api.wtwr.baselinux.net"
+  : "http://localhost:3001";
+
 const headers = () => ({
   "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
   "Content-Type": "application/json"
