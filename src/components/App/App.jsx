@@ -198,13 +198,6 @@ function App() {
   }
 
   useEffect(() => {
-    getUserData()
-      .then((data) => {
-      setCurrentUser(data);
-    })
-  }, []);
-
-  useEffect(() => {
     getWeather(coordinates, APIkey)
     .then((data) => {
       const filteredData = filterWeatherData(data);
