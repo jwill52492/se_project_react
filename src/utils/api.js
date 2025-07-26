@@ -1,4 +1,4 @@
-export const baseUrl = process.env.NODE_ENV === "production"
+const baseUrl = process.env.NODE_ENV === "production"
   ? "https://api.wtwr.baselinux.net"
   : "http://localhost:3001";
 
